@@ -4,13 +4,12 @@ import NewProduct from "../NewProduct";
 import { fetchNewProducts, getReviewsUsers } from "../../actions";
 import { useLocation, Link } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
-// import Loading from "../Loading";
 import Message from "../Message";
 import Rating from "../Rating";
 import Products from "../Products";
 import UserReviews from "../UserReviews";
 import Banner from "../Banner";
-// import UserChat from "../UserChat";
+import Meta from "../Meta";
 import _ from "lodash";
 
 const HomeScreen = () => {
@@ -32,6 +31,7 @@ const HomeScreen = () => {
 
   return (
     <React.Fragment>
+      <Meta />
       <Banner />
       {success && (
         <>

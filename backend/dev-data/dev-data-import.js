@@ -28,11 +28,11 @@ mongoose
 
 const importData = async () => {
   try {
-    const data = JSON.parse(fs.readFileSync(`${__dirname}/products.json`));
-    await Product.create(data);
+    // const data = JSON.parse(fs.readFileSync(`${__dirname}/products.json`));
+    // await Product.create(data);
 
-    // const data = JSON.parse(fs.readFileSync(`${__dirname}/users.json`))
-    // await User.create(data, { validateBeforeSave: false });
+    const data = JSON.parse(fs.readFileSync(`${__dirname}/users.json`));
+    await User.create(data, { validateBeforeSave: false });
   } catch (err) {
     console.log(err.message);
   }
@@ -41,8 +41,8 @@ const importData = async () => {
 
 const deleteData = async () => {
   try {
-    await Product.deleteMany({});
-    // await User.deleteMany({});
+    // await Product.deleteMany({});
+    await User.deleteMany({});
   } catch (err) {
     console.log(err.message);
   }

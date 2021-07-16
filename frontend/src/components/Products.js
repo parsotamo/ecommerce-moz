@@ -75,15 +75,17 @@ const Products = () => {
                         <i className="fas fa-th-large"></i> {product.category}
                       </div>
                       <div className="col-6">
-                        <i className="fas fa-car"></i> {product.brand}
+                        <i className="fas fa-building"></i> {product.brand}
                       </div>
                     </div>
                     <div className="row py-2 text-secondary">
                       <div className="col-6">
-                        <i className="fas fa-bed"></i> {product.countInStock}
+                        <i className="fas fa-warehouse"></i>{" "}
+                        {product.countInStock}
                       </div>
                       <div className="col-6">
-                        <i className="fas fa-bath"></i> {product.price} MZN
+                        <i className="fas fa-money-bill"></i> {product.price}{" "}
+                        MZN
                       </div>
                     </div>
                     <hr />

@@ -2,6 +2,11 @@ const express = require("express");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
 const path = require("path");
+const rateLimit = require("express-rate-limit");
+const mongoSanitize = require("express-mongo-sanitize");
+const helmet = require("helmet");
+const xss = require("xss-clean");
+const hpp = require("hpp");
 
 dotenv.config({ path: "config.env" });
 
@@ -14,6 +19,15 @@ const globalErrorHandler = require("./controllers/errorController");
 
 const app = express();
 
+app.use(helmet());
+app.use(
+  "/api",
+  rateLimit({
+    max: 500,
+    windowMs: 60 * 60 * 1000,
+    message: "Too many requests from this IP. Try again in an hour.",
+  })
+);
 // app.use(cors());
 
 if (process.env.NODE_ENV === "development") {
@@ -21,6 +35,9 @@ if (process.env.NODE_ENV === "development") {
 }
 
 app.use(express.json());
+
+app.use(mongoSanitize());
+app.use(xss());
 
 app.use("/api/products", productRouter);
 app.use("/api/users", userRouter);
