@@ -8,13 +8,6 @@ node_modules/
 #testing
 /coverage
 
-*.jpg
-*.jpeg
-*.png
-*.gif
-*.psd
-*.ai
-
 #production
 /frontend/build
 
