@@ -1,15 +1,15 @@
-const {
-  removeAllUsersFromListRedis,
-  removeUsersFromListRedis,
-  addUsersToListRedis,
-} = require("./models/heartbeat");
+// const {
+//   removeAllUsersFromListRedis,
+//   removeUsersFromListRedis,
+//   addUsersToListRedis,
+// } = require("./models/heartbeat");
 const AppError = require("./utils/AppError");
 
 let io;
 
 exports.init = (httpServer) => {
   io = require("socket.io")(httpServer);
-  removeAllUsersFromListRedis("CM:USER:ON", (e, r) => {});
+  // removeAllUsersFromListRedis("CM:USER:ON", (e, r) => {});
   return io;
 };
 
