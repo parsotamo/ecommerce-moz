@@ -1,0 +1,62 @@
+@import "abstracts/variables";
+@import "base/base";
+@import "base/animations";
+@import "base/utilities";
+@import "components/banner";
+@import "components/product_slider";
+@import "components/table";
+@import "components/chat";
+@import "components/emoji_picker";
+@import "components/slider";
+@import "components/pagination";
+@import "layout/grid";
+@import "layout/navigation";
+@import "layout/header";
+@import "layout/footer";
+
+.menu-list {
+  border-bottom: 2px solid $color-light-2;
+  .nav-link {
+    position: relative;
+    font-size: 1.4rem;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: $color-red-primary;
+      transform: scale(0);
+      transition: all 0.4s;
+    }
+    &:hover {
+      color: $color-red-primary !important;
+    }
+    &:hover::after {
+      transform: scale(1);
+    }
+  }
+  .current {
+    color: $color-red-primary !important;
+  }
+}
+// Fim Menu de Navegação
+
+#username {
+  color: #fff;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dropdown-menu {
+  position: absolute !important;
+  left: 50%;
+}
+
+.recent-product {
+  overflow: hidden;
+}

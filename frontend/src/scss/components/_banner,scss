@@ -1,0 +1,75 @@
+.header-parent {
+  filter: drop-shadow(0 2.5rem 2.5rem rgba(0, 0, 0, 0.8));
+}
+.header {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)),
+    url("../images/ComercioMoz_Banner.JPEG") no-repeat center center / cover;
+  height: 91vh;
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+  @media only screen and (max-width: 700px) {
+    height: 40vh;
+  }
+}
+
+.banner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  .banner-heading {
+    font-size: 7rem;
+    animation-name: bannerAnim;
+    animation-duration: 2s;
+    &--photo {
+      font-size: 8rem;
+    }
+  }
+  .banner-text {
+    font-size: 2rem;
+    animation: bannerAnim 2s 0.5s backwards;
+  }
+  @media only screen and (max-width: 1100px) {
+    .banner-heading {
+      font-size: 5rem;
+      &--photo {
+        font-size: 5rem;
+      }
+    }
+
+    .banner-text {
+      font-size: 1.5rem;
+    }
+  }
+  @media only screen and (max-width: 800px) {
+    width: 90%;
+    // top: 50%;
+    .banner-heading {
+      font-size: 3.5rem;
+      &--photo {
+        font-size: 3.5rem;
+      }
+    }
+
+    .banner-text {
+      font-size: 1.3rem;
+    }
+  }
+  @media only screen and (max-width: 700px) {
+    top: 35%;
+  }
+  @media only screen and (max-width: 450px) {
+    width: 100%;
+
+    .banner-heading {
+      font-size: 2.5rem;
+      &--photo {
+        font-size: 2.5rem;
+      }
+    }
+
+    .banner-text {
+      font-size: 1.2rem;
+    }
+  }
+}

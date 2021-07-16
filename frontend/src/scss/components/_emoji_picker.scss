@@ -1,0 +1,13 @@
+.comment-area {
+  position: relative;
+  .emoji-mart {
+    position: absolute;
+    top: -290%;
+    left: 0;
+  }
+}
+
+.select-emoji {
+  cursor: pointer;
+  display: inline-block;
+}

@@ -1,0 +1,83 @@
+.footer_area {
+  background: #000;
+  border-top: 2px solid $color-red-primary;
+  padding: 6rem 0;
+}
+.footer_inner {
+  @media only screen and (max-width: 575px) {
+    text-align: center;
+  }
+}
+
+.f_title {
+  margin-bottom: 3rem;
+  h3 {
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: bold;
+    font-family: $hee;
+    margin-bottom: 0px;
+  }
+}
+
+.ab_widget {
+  p {
+    font-size: 14px;
+    line-height: 2.4rem;
+    font-family: $rob;
+    color: $pfont;
+    margin-bottom: 30px;
+    a {
+      color: $baseColor;
+    }
+    & + p {
+      margin-bottom: 0px;
+    }
+  }
+}
+
+.copy_right_text {
+  text-align: center;
+  margin-top: 3rem;
+  p {
+    a {
+      color: $baseColor;
+    }
+  }
+}
+.owner {
+  text-align: center;
+  &-photo {
+    margin-top: 3rem;
+  }
+  &-photo {
+    width: 20rem;
+    height: 20rem;
+    border-radius: 100%;
+    background-size: cover;
+    border: 5px solid #fff;
+  }
+}
+.social-icons {
+  .social-icons-item {
+    display: inline-block;
+    &:not(:last-child) {
+      margin-right: 1.5rem;
+    }
+    .social-icons-link {
+      .fab {
+        font-size: 4rem;
+        transition: all 0.2s;
+        &:hover {
+          transform: translateY(-1px);
+        }
+      }
+      .fa-instagram {
+        color: $color-red-primary;
+      }
+      .fa-facebook {
+        color: var(--color-blue-test-1);
+      }
+    }
+  }
+}

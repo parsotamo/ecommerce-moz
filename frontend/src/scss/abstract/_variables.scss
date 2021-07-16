@@ -1,0 +1,60 @@
+$color-red-primary: #d10024;
+$color-light-1: #fafafa;
+$color-light-2: #eee;
+$color-light-3: #ccc;
+$color-dark-1: #151f20;
+$color-dark-2: #222;
+$color-dark-3: #777;
+$color-primary: #70aed2;
+$color-red-1: #f9793d;
+$color-red-2: #f5593d;
+$color-white: #fff;
+
+/*font Variables*/
+$hee: "Heebo", sans-serif;
+$rob: "Roboto", sans-serif;
+/*Color Variables*/
+$baseColor: #766dff;
+$dip: #222222;
+$pfont: #777777;
+
+:root {
+  --color-green: #55c57a;
+  --color-green-light: #7ed56f;
+  --color-green-dark: #28b485;
+
+  --color-orange-light: #ffb900;
+  --color-orange-dark: #ff7730;
+
+  --color-blue-light: #2998ff;
+  --color-blue-dark: #5643fa;
+  --color-blue: #42a5f5;
+  --color-blue-test: #2b547e;
+  --color-blue-test-1: #104e8b;
+
+  --color-red-light: #bc544b;
+  --color-red-dark: #60100b;
+
+  --color-white: #fff;
+
+  --snow: #fffafa;
+  --ghost-white: #f8f8ff;
+  --belga: #f5f5dc;
+  --limon: #faf0e6;
+  --honeydew: #f0fff0;
+  --ivory: #fffff0;
+  --alice-blue: #f0f8ff;
+  --mint-cream: #f5fffa;
+  --old-lace: #fdf5e6;
+  --blue-light: #f7fbfb;
+}
+
+// Mixins
+@mixin transition(
+  $property: all,
+  $duration: 300ms,
+  $animate: linear,
+  $delay: 0s
+) {
+  transition: $property $duration $animate $delay;
+}

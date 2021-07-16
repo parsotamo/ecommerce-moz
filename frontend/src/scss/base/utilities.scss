@@ -1,0 +1,60 @@
+.u-center-text {
+  text-align: center !important;
+}
+
+.u-margin-bottom-small {
+  margin-bottom: 1.5rem !important;
+}
+.u-margin-bottom-medium {
+  margin-bottom: 4rem !important;
+}
+
+.u-margin-bottom-big {
+  margin-bottom: 8rem !important;
+}
+
+.u-margin-top-big {
+  margin-top: 8rem !important;
+}
+.u-margin-top-huge {
+  margin-top: 10rem !important;
+}
+
+.u-padding-bottom-small {
+  padding-bottom: 1.5rem !important;
+}
+.u-padding-bottom-medium {
+  padding-bottom: 4rem !important;
+}
+
+.u-padding-bottom-big {
+  padding-bottom: 8rem !important;
+}
+.u-padding-bottom-huge {
+  padding-bottom: 10rem !important;
+}
+.u-padding-top-big {
+  padding-top: 8rem !important;
+}
+.u-padding-top-huge {
+  padding-top: 10rem !important;
+}
+
+.jumbotron {
+  background-color: $color-light-3;
+  opacity: 0.2;
+  font-weight: 600;
+  width: 100%;
+  height: 100%;
+  &-title {
+    font-style: italic;
+    font-weight: 600;
+    letter-spacing: 5px;
+    font-size: 10rem;
+    color: $color-white;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

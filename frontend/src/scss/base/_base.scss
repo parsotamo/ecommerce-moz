@@ -1,0 +1,19 @@
+// Configuração Geral
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+html {
+  font-size: 62.5%;
+  @media only screen and (max-width: 575px) {
+    font-size: 45%;
+  }
+}
+body {
+  box-sizing: border-box;
+}
+
+// Fim Configuração Geral
