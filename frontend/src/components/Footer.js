@@ -40,6 +40,7 @@ const Footer = () => {
             <ul className="social-icons">
               <li className="social-icons-item">
                 <Link
+                  target="_blank"
                   to="https://instagram.com/ilan_parsotamo"
                   className="social-icons-link"
                 >
@@ -48,6 +49,7 @@ const Footer = () => {
               </li>
               <li className="social-icons-item">
                 <Link
+                  target="_blank"
                   to="https://facebook.com/ilan.parso"
                   className="social-icons-link"
                 >
