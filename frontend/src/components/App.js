@@ -28,7 +28,7 @@ import "react-toastify/dist/ReactToastify.css";
 import SocketContext from "../context/SocketContext";
 import io from "socket.io-client";
 
-const socket = io.connect(`http://localhost:3000`, {
+const socket = io.connect(`https://comercio-moz.herokuapp.com`, {
   reconnection: true,
   reconnectionDelay: 500,
   reconnectionAttempts: 10,
