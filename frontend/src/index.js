@@ -5,7 +5,6 @@ import { createStore, applyMiddleware, compose } from "redux";
 import reduxThunk from "redux-thunk";
 import App from "./components/App";
 import "./bootstrap.min.css";
-import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./css/Index.css";
 import reducers from "./reducers";
 
