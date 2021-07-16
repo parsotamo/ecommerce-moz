@@ -44,10 +44,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "watch:sass": "node-sass src/scss/main.scss src/css/Main.css -w",
+    "watch:sass": "node-sass src/scss/main.scss src/Main.css -w",
     "start:css": "npm run watch:sass",
     "prefix:css": "postcss --use autoprefixer -r src/css",
-    "compress:css": "node-sass --output-style compressed src/css/Main.css > src/css/Main.min.css",
+    "compress:css": "node-sass --output-style compressed src/Main.css > src/Main.min.css",
     "build:css": "npm-run-all prefix:css compress:css"
   },
   "eslintConfig": {

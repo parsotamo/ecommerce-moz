@@ -5,7 +5,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 import reduxThunk from "redux-thunk";
 import App from "./components/App";
 import "./bootstrap.min.css";
-import "./css/Main.css";
+import "./Main.css";
 import reducers from "./reducers";
 
 const cartItemsFromLocalStorage = localStorage.getItem("cartItems")
