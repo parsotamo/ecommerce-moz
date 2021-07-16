@@ -4,9 +4,8 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
 import reduxThunk from "redux-thunk";
 import App from "./components/App";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./bootstrap.min.css";
-import "../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./css/Index.css";
 import reducers from "./reducers";
 
