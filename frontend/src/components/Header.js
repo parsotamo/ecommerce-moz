@@ -105,11 +105,11 @@ const Header = () => {
                           Compras
                         </NavDropdown.Item>
                       </LinkContainer>
-                      <LinkContainer to="/admin/chat">
+                      {/* <LinkContainer to="/admin/chat">
                         <NavDropdown.Item variant="light">
                           Chat
                         </NavDropdown.Item>
-                      </LinkContainer>
+                      </LinkContainer> */}
                     </NavDropdown>
                   )}
                   <li className="nav-item">

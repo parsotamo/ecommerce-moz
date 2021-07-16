@@ -71,7 +71,7 @@ const App = () => {
             <Route path="/admin/users" component={UserListScreen} />
             <Route path="/admin/orders" component={OrderListScreen} />
 
-            <Route path="/admin/chat/:conversationId?" component={ChatScreen} />
+            {/* <Route path="/admin/chat/:conversationId?" component={ChatScreen} /> */}
           </Switch>
         </SocketContext.Provider>
         <ToastContainer
