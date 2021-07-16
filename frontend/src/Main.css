@@ -131,7 +131,7 @@ body {
 
 .header {
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)),
-    url(./images/ComercioMoz_Banner.JPEG) no-repeat center center/cover;
+    url(/images/ComercioMoz_Banner.JPEG) no-repeat center center/cover;
   height: 91vh;
   clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
 }
@@ -674,7 +674,7 @@ small {
 }
 
 #showcase {
-  background: url(./images/ComercioMoz_Banner.JPEG) no-repeat top center fixed;
+  background: url(/images/ComercioMoz_Banner.JPEG) no-repeat top center fixed;
   background-size: cover;
   position: relative;
   min-height: 250px;
