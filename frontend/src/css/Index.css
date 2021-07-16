@@ -106,7 +106,7 @@ body {
   filter: drop-shadow(0 2.5rem 2.5rem rgba(0, 0, 0, 0.8)); }
 
 .header {
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url("./images/ComercioMoz_Banner.JPEG") no-repeat center center/cover;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url("./images/products/ComercioMoz_Banner.JPEG") no-repeat center center/cover;
   height: 91vh;
   clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%); }
   @media only screen and (max-width: 700px) {
