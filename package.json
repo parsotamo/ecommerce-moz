@@ -4,9 +4,10 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start:prod": "NODE_ENV=production nodemon backend/server",
+    "server": "nodemon backend/server",
     "client": "npm start --prefix frontend",
-    "start:prod": "NODE_ENV=production nodemon server.js",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
     "debug": "ndb server.js",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
   },
