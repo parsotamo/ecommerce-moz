@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "proxy": "http://[::1]:8000",
+  "proxy": "http://localhost:5000",
   "secure": false,
   "version": "0.1.0",
   "private": true,
