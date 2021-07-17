@@ -32,6 +32,7 @@
     "mustache": "^4.2.0",
     "ndb": "^1.1.5",
     "nodemailer": "^6.6.1",
+    "nodemon": "^2.0.12",
     "redis": "^3.1.2",
     "sharp": "^0.28.3",
     "slugify": "^1.5.3",
