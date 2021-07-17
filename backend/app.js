@@ -7,7 +7,6 @@ const mongoSanitize = require("express-mongo-sanitize");
 const helmet = require("helmet");
 const xss = require("xss-clean");
 const hpp = require("hpp");
-const proxy = require("http-proxy-middleware");
 
 dotenv.config({ path: "config.env" });
 
@@ -20,19 +19,15 @@ const globalErrorHandler = require("./controllers/errorController");
 
 const app = express();
 
-module.exports = (app) => {
-  app.use(proxy("/api/*", { target: "https://localhost:5000/" }));
-};
-
-app.use(helmet());
-app.use(
-  "/api",
-  rateLimit({
-    max: 500,
-    windowMs: 60 * 60 * 1000,
-    message: "Too many requests from this IP. Try again in an hour.",
-  })
-);
+// app.use(helmet());
+// app.use(
+//   "/api",
+//   rateLimit({
+//     max: 500,
+//     windowMs: 60 * 60 * 1000,
+//     message: "Too many requests from this IP. Try again in an hour.",
+//   })
+// );
 // app.use(cors());
 
 if (process.env.NODE_ENV === "development") {
@@ -41,8 +36,8 @@ if (process.env.NODE_ENV === "development") {
 
 app.use(express.json());
 
-app.use(mongoSanitize());
-app.use(xss());
+// app.use(mongoSanitize());
+// app.use(xss());
 
 app.use("/api/products", productRouter);
 app.use("/api/users", userRouter);
