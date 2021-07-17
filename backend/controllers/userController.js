@@ -98,7 +98,7 @@ exports.uploadUserPhoto = upload.single("photo");
 exports.resizeUserPhoto = catchAsyncError(async (req, res, next) => {
   if (!req.file) return next();
 
-  req.file.filename = `${req.user.email.split(".")[0]}-${Date.now()}.jpeg`;
+  req.file.filename = `${req.user.email.split(".")[0]}-${req.user._id}.jpeg`;
 
   await sharp(req.file.buffer)
     .resize(300, 300)
