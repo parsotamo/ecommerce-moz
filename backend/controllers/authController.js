@@ -23,7 +23,7 @@ exports.signup = catchAsyncError(async (req, res, next) => {
     passwordConfirm: req.body.passwordConfirm,
   });
 
-  await new Email(user, `${req.protocol}://${req.get("host")}`).sendWelcome();
+  // await new Email(user, `${req.protocol}://${req.get("host")}`).sendWelcome();
   const token = signJWT(user._id);
 
   // io.getIO().emit("auth", {
