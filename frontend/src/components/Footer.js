@@ -39,22 +39,22 @@ const Footer = () => {
             <h3 className="text-light mb-5">Vamos ser sociais</h3>
             <ul className="social-icons">
               <li className="social-icons-item">
-                <Link
+                <a
                   target="_blank"
                   to="https://instagram.com/ilan_parsotamo"
                   className="social-icons-link"
                 >
                   <i className="fab fa-instagram"></i>
-                </Link>
+                </a>
               </li>
               <li className="social-icons-item">
-                <Link
+                <a
                   target="_blank"
                   to="https://facebook.com/ilan.parso"
                   className="social-icons-link"
                 >
                   <i className="fab fa-facebook"></i>
-                </Link>
+                </a>
               </li>
             </ul>
           </div>

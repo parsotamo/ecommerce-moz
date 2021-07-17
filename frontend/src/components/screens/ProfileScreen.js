@@ -23,9 +23,11 @@ const ProfileScreen = ({ history }) => {
 
   const { userInfo } = useSelector((state) => state.userLogin);
   const { loading, user, error } = useSelector((state) => state.userDetails);
-  const { orders, loading: userOrderLoading, error: errorOrder } = useSelector(
-    (state) => state.userOrders
-  );
+  const {
+    orders,
+    loading: userOrderLoading,
+    error: errorOrder,
+  } = useSelector((state) => state.userOrders);
   const { success } = useSelector((state) => state.userUpdateProfile);
 
   useEffect(() => {
@@ -102,7 +104,7 @@ const ProfileScreen = ({ history }) => {
 
             <div className="form-group text-center mb-3">
               <img
-                src={`images/users/${photo}`}
+                src={`/images/users/${photo}`}
                 className="img-fluid img-thumbnail rounded-circle mb-5"
                 width="200"
                 height="200"
