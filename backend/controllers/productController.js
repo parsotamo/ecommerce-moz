@@ -47,7 +47,10 @@ exports.resizeProductImages = catchAsyncError(async (req, res, next) => {
       .toFormat("jpeg")
       .jpeg({ quality: 90 })
       .toFile(
-        path.join(mydir, `/frontend/public/images/products/${req.body.image}`)
+        path.join(
+          __dirname,
+          `../../frontend/build/images/products/${req.body.image}`
+        )
       );
   }
   if (
@@ -76,7 +79,7 @@ exports.resizeProductImages = catchAsyncError(async (req, res, next) => {
         .toFormat("jpeg")
         .jpeg({ quality: 70 })
         .toFile(
-          `${__dirname}/../../frontend/public/images/products/${filename}`
+          path.join(__dirname, `../../frontend/build/images/products`, filename)
         );
     });
   }
