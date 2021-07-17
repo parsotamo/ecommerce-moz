@@ -7,6 +7,7 @@ const mongoSanitize = require("express-mongo-sanitize");
 const helmet = require("helmet");
 const xss = require("xss-clean");
 const hpp = require("hpp");
+const proxy = require("http-proxy-middleware");
 
 dotenv.config({ path: "config.env" });
 
@@ -18,6 +19,10 @@ const orderRouter = require("./routes/orderRoutes");
 const globalErrorHandler = require("./controllers/errorController");
 
 const app = express();
+
+module.exports = (app) => {
+  app.use(proxy("/api/*", { target: "https://localhost:5000/" }));
+};
 
 app.use(helmet());
 app.use(
