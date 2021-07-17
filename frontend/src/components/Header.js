@@ -16,28 +16,29 @@ const Header = () => {
   const [newUserMsg, setNewUserMsg] = useState("");
   const [newMsg, setNewMsg] = useState({});
 
-  const socket = useContext(SocketContext);
+  // const socket = useContext(SocketContext);
 
   useEffect(() => {
     if (userInfo) {
       if (!user) {
         dispatch(getUserProfile());
       }
-      socket.emit("join-user", userInfo, (cbData) => {});
-    }
-    socket.on("auth", (data) => {
-      if (data.action === "new-user") {
-        setNewUserMsg(data.msg);
-      }
+      //   socket.emit("join-user", userInfo, (cbData) => {});
+      // }
+      // socket.on("auth", (data) => {
+      //   if (data.action === "new-user") {
+      //     setNewUserMsg(data.msg);
+      //   }
 
-      setNewUserMsg("");
-    });
-    socket.on("receive-msg", (data) => {
-      if (data) {
-        setNewMsg(data);
-      }
-      setNewMsg("");
-    });
+      //   setNewUserMsg("");
+      // });
+      // socket.on("receive-msg", (data) => {
+      //   if (data) {
+      //     setNewMsg(data);
+      //   }
+      //   setNewMsg("");
+      // });
+    }
   }, [userInfo]);
 
   const logoutHandler = () => {

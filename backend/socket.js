@@ -3,20 +3,20 @@
 //   removeUsersFromListRedis,
 //   addUsersToListRedis,
 // } = require("./models/heartbeat");
-const AppError = require("./utils/AppError");
+// const AppError = require("./utils/AppError");
 
-let io;
+// let io;
 
-exports.init = (httpServer) => {
-  io = require("socket.io")(httpServer);
-  // removeAllUsersFromListRedis("CM:USER:ON", (e, r) => {});
-  return io;
-};
+// exports.init = (httpServer) => {
+//   io = require("socket.io")(httpServer);
+// removeAllUsersFromListRedis("CM:USER:ON", (e, r) => {});
+//   return io;
+// };
 
-exports.getIO = () => {
-  if (!io) return new AppError("Socket.io não inicializou", 500);
-  return io;
-};
+// exports.getIO = () => {
+//   if (!io) return new AppError("Socket.io não inicializou", 500);
+//   return io;
+// };
 
 // exports.socketManager = (socket) => {
 //   console.log("connected");

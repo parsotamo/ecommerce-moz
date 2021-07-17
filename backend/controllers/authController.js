@@ -26,10 +26,10 @@ exports.signup = catchAsyncError(async (req, res, next) => {
   await new Email(user, `${req.protocol}://${req.get("host")}`).sendWelcome();
   const token = signJWT(user._id);
 
-  io.getIO().emit("auth", {
-    action: "new-user",
-    msg: `Usuário chamado ${user.name} acaba de cadastrar-se`,
-  });
+  // io.getIO().emit("auth", {
+  //   action: "new-user",
+  //   msg: `Usuário chamado ${user.name} acaba de cadastrar-se`,
+  // });
 
   res.status(201).json({
     status: "success",

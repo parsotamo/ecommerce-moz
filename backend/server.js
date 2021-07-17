@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const socket = require("./socket");
+// const socket = require("./socket");
 
 const app = require("./app");
 
@@ -25,5 +25,5 @@ const server = app.listen(port, () => {
   console.log(`Server running on port ${port}...`);
 });
 
-const io = socket.init(server);
+// const io = socket.init(server);
 // io.on("connection", socket.socketManager);
