@@ -174,11 +174,11 @@ const Header = () => {
                             {user.name.split(" ")[0]}
                           </NavDropdown.Item>
                         </LinkContainer>
-                        <LinkContainer to="/admin/chat">
+                        {/* <LinkContainer to="/admin/chat">
                           <NavDropdown.Item variant="light">
                             Chat
                           </NavDropdown.Item>
-                        </LinkContainer>
+                        </LinkContainer> */}
                         <NavDropdown.Item onClick={logoutHandler}>
                           Sair
                         </NavDropdown.Item>
