@@ -107,7 +107,7 @@ exports.resizeUserPhoto = catchAsyncError(async (req, res, next) => {
     .toFile(
       path.join(
         __dirname,
-        `../../frontend/public/images/users/${req.file.filename}`
+        `../../frontend/build/images/users/${req.file.filename}`
       )
     );
 
