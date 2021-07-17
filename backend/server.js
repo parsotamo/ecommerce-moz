@@ -3,13 +3,8 @@ const mongoose = require("mongoose");
 
 const app = require("./app");
 
-const DB = process.env.DATABASE.replace(
-  "<PASSWORD>",
-  process.env.DATABASE_PASSWORD
-);
-
 mongoose
-  .connect(DB, {
+  .connect(process.env.DATABASE, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -25,5 +20,11 @@ const server = app.listen(port, () => {
   console.log(`Server running on port ${port}...`);
 });
 
+process.on("unhandledRejection", (err) => {
+  server.close(() => {
+    console.log(err.name, err.message);
+    process.exit(1);
+  });
+});
 // const io = socket.init(server);
 // io.on("connection", socket.socketManager);
