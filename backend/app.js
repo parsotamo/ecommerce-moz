@@ -27,7 +27,7 @@ if (process.env.NODE_ENV === "development") {
 
 app.use(express.json());
 
-// app.use(mongoSanitize());
+app.use(mongoSanitize());
 // app.use(xss());
 
 app.use("/api/products", productRouter);
