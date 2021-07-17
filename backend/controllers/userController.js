@@ -1,11 +1,13 @@
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const sharp = require("sharp");
-
+const path = require("path");
 const User = require("../models/userModel");
 const AppError = require("../utils/AppError");
 const catchAsyncError = require("../utils/catchAsyncError");
 const factory = require("./factoryHandler");
+
+const mydir = path.resolve();
 
 const filterObj = (obj, ...allowed) => {
   const newObj = {};
@@ -103,7 +105,7 @@ exports.resizeUserPhoto = catchAsyncError(async (req, res, next) => {
     .toFormat("jpeg")
     .jpeg({ quality: 90 })
     .toFile(
-      `${__dirname}/../../frontend/public/images/users/${req.file.filename}`
+      path.join(mydir, `/frontend//public/images/users/${req.file.filename}`)
     );
 
   next();

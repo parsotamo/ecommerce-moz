@@ -6,6 +6,9 @@ const Review = require("../models/reviewModel");
 const AppError = require("../utils/AppError");
 const catchAsyncError = require("../utils/catchAsyncError");
 const factory = require("./factoryHandler");
+const path = require("path");
+
+const mydir = path.resolve();
 
 const multerStorage = multer.memoryStorage();
 
@@ -36,15 +39,6 @@ exports.uploadProductImages = upload.fields([
 
 exports.resizeProductImages = catchAsyncError(async (req, res, next) => {
   if (!req.files) return next();
-  //   if (
-  //     (!req.files.image && !req.files.image1) ||
-  //     req.files.image2 ||
-  //     req.files.image3 ||
-  //     req.files.image4 ||
-  //     req.files.image5
-  //   ) {
-  //     return next();
-  //   }
 
   if (req.files.image) {
     req.body.image = `${req.params.id}-main.jpeg`;
@@ -53,7 +47,7 @@ exports.resizeProductImages = catchAsyncError(async (req, res, next) => {
       .toFormat("jpeg")
       .jpeg({ quality: 90 })
       .toFile(
-        `${__dirname}/../../frontend/public/images/products/${req.body.image}`
+        path.join(mydir, `/frontend/public/images/products/${req.body.image}`)
       );
   }
   if (
