@@ -7,11 +7,10 @@
     "node": "14.x",
     "npm": "6.x"
   },
-
   "scripts": {
     "server": "nodemon backend/server",
     "client": "npm start --prefix frontend",
-    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
     "debug": "ndb server.js",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
   },
@@ -37,6 +36,7 @@
     "mustache": "^4.2.0",
     "ndb": "^1.1.5",
     "nodemailer": "^6.6.1",
+    "nodemon": "^2.0.12",
     "redis": "^3.1.2",
     "sharp": "^0.28.3",
     "slugify": "^1.5.3",
