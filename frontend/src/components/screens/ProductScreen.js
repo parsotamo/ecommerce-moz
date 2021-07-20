@@ -80,6 +80,7 @@ const ProductDetail = ({ match }) => {
   };
   return (
     <section className="product-detail my-5 mx-lg-5">
+      <Meta title={product.name} />
       <div
         className="container-fluid"
         onClick={(e) => {
@@ -96,117 +97,112 @@ const ProductDetail = ({ match }) => {
         ) : error ? (
           <Message variant="danger">{error}</Message>
         ) : (
-          <>
-            <Meta title={product.name} />
-            <div className="row mt-5">
-              <div className="col-sm-6 col-md-7">
-                <Link to={`/images/products/${product.image}`}>
-                  <img
-                    className="img-fluid"
-                    src={`/images/products/${product.image}`}
-                    alt="new product"
-                  />
-                </Link>
+          <div className="row mt-5">
+            <div className="col-sm-6 col-md-7">
+              <Link to={product.image}>
+                <img
+                  className="detail-product-image"
+                  src={product.image}
+                  alt="Foto Principal"
+                />
+              </Link>
 
-                <div className="row mt-5">
-                  {[
-                    product.image1,
-                    product.image2,
-                    product.image3,
-                    product.image4,
-                    product.image5,
-                  ].map(
-                    (prodImg, i) =>
-                      prodImg && (
-                        <div className="col-2" key={i + 1}>
-                          <Link
-                            to={`/images/products/${prodImg}`}
-                            data-lightbox="library"
-                            data-title={prodImg}
-                          >
-                            <img
-                              className="img-fluid"
-                              src={`/images/products/${prodImg}`}
-                              alt="Produto Recente"
-                            />
-                          </Link>
-                        </div>
-                      )
-                  )}
-                </div>
-              </div>
-              <div className="col-sm-3  text-secondary">
-                <ul className="list-group list-group-flush mt-5">
-                  <li className="list-group-item h2 text-uppercase fw-light pb-5">
-                    {product.name}
-                  </li>
-                  <li className="list-group-item fs-4 py-4">
-                    <Rating
-                      star={product.avgRating}
-                      review={product.numReviews}
-                    />
-                  </li>
-                  <li className="list-group-item fs-3 py-4 mb-3">
-                    Preço: {product.price}
-                  </li>
-                  <li className="list-group-item fs-3 py-4 text-muted">
-                    Descrição: {product.description}
-                  </li>
-                </ul>
-              </div>
-              <div className="col-sm-3 col-md-2">
-                <div className="card fs-3">
-                  <ul className="list-group list-group-flush">
-                    <li className="list-group-item text-muted">
-                      <div className="row">
-                        <div className="col">Preço</div>
-                        <div className="col">{product.price} MTS</div>
+              <div className="row mt-5">
+                {[
+                  product.image1,
+                  product.image2,
+                  product.image3,
+                  product.image4,
+                  product.image5,
+                ].map(
+                  (prodImg, i) =>
+                    prodImg && (
+                      <div className="col-3" key={i + 1}>
+                        <Link
+                          to={prodImg}
+                          data-lightbox="library"
+                          data-title={prodImg}
+                        >
+                          <img
+                            className="img-fluid img-thumbnail"
+                            src={prodImg}
+                            alt="Produto Recente"
+                          />
+                        </Link>
                       </div>
-                    </li>
-                    <li className="list-group-item text-muted">
-                      <div className="row">
-                        <div className="col">Estado</div>
-                        <div className="col">
-                          {product.countInStock > 0
-                            ? "Tem estoque"
-                            : "Estoque esgotado"}
-                        </div>
-                      </div>
-                    </li>
-                    {product.countInStock > 0 && (
-                      <li className="list-group-item text-muted">
-                        <div className="row">
-                          <select
-                            className="py-3 form-select"
-                            type="select"
-                            value={qty}
-                            onChange={(e) => setQty(e.target.value)}
-                          >
-                            {[...Array(product.countInStock).keys()].map(
-                              (el) => (
-                                <option key={el + 1} value={el + 1}>
-                                  {el + 1}
-                                </option>
-                              )
-                            )}
-                          </select>
-                        </div>
-                      </li>
-                    )}
-
-                    <button
-                      className="btn btn-dark py-4 fs-4 text-uppercase fw-bold"
-                      type="button"
-                      disabled={Number(product.countInStock) === 0}
-                      onClick={addToCartHandler}
-                    >
-                      Adicionar <i className="fas fa-shopping-cart"></i>
-                    </button>
-                  </ul>
-                </div>
+                    )
+                )}
               </div>
             </div>
-          </>
+            <div className="col-sm-3  text-secondary">
+              <ul className="list-group list-group-flush mt-5">
+                <li className="list-group-item h2 text-uppercase fw-light pb-5">
+                  {product.name}
+                </li>
+                <li className="list-group-item fs-4 py-4">
+                  <Rating
+                    star={product.avgRating}
+                    review={product.numReviews}
+                  />
+                </li>
+                <li className="list-group-item fs-3 py-4 mb-3">
+                  Preço: {product.price}
+                </li>
+                <li className="list-group-item fs-3 py-4 text-muted">
+                  Descrição: {product.description}
+                </li>
+              </ul>
+            </div>
+            <div className="col-sm-3 col-md-2">
+              <div className="card fs-3">
+                <ul className="list-group list-group-flush">
+                  <li className="list-group-item text-muted">
+                    <div className="row">
+                      <div className="col">Preço</div>
+                      <div className="col">{product.price} MTS</div>
+                    </div>
+                  </li>
+                  <li className="list-group-item text-muted">
+                    <div className="row">
+                      <div className="col">Estado</div>
+                      <div className="col">
+                        {product.countInStock > 0
+                          ? "Tem estoque"
+                          : "Estoque esgotado"}
+                      </div>
+                    </div>
+                  </li>
+                  {product.countInStock > 0 && (
+                    <li className="list-group-item text-muted">
+                      <div className="row">
+                        <select
+                          className="py-3 form-select"
+                          type="select"
+                          value={qty}
+                          onChange={(e) => setQty(e.target.value)}
+                        >
+                          {[...Array(product.countInStock).keys()].map((el) => (
+                            <option key={el + 1} value={el + 1}>
+                              {el + 1}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    </li>
+                  )}
+
+                  <button
+                    className="btn btn-dark py-4 fs-4 text-uppercase fw-bold"
+                    type="button"
+                    disabled={Number(product.countInStock) === 0}
+                    onClick={addToCartHandler}
+                  >
+                    Adicionar <i className="fas fa-shopping-cart"></i>
+                  </button>
+                </ul>
+              </div>
+            </div>
+          </div>
         )}
         <div className="row mt-5">
           <div className="col-sm-12 col-md-6">
@@ -221,7 +217,7 @@ const ProductDetail = ({ match }) => {
                   <div className="row mb-4" key={ind}>
                     <div className="col-2">
                       <img
-                        src={`/images/users/${review.user.photo}`}
+                        src={review.user.photo}
                         className="img-fluid rounded-circle"
                         alt="Foto de Usuario que comenta"
                       />

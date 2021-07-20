@@ -1,12 +1,13 @@
 const multer = require("multer");
 const sharp = require("sharp");
+const { Storage } = require("@google-cloud/storage");
+const path = require("path");
 
 const Product = require("../models/productModel");
 const Review = require("../models/reviewModel");
 const AppError = require("../utils/AppError");
 const catchAsyncError = require("../utils/catchAsyncError");
 const factory = require("./factoryHandler");
-const path = require("path");
 
 const mydir = path.resolve();
 
@@ -28,6 +29,16 @@ const upload = multer({
   fileFilter: multerFilter,
 });
 
+const gc = new Storage({
+  projectId: process.env.GOOGLE_CLOUD_PROJECT_ID,
+  credentials: {
+    client_email: process.env.GOOGLE_CLOUD_CLIENT_EMAIL,
+    private_key: process.env.GOOGLE_CLOUD_PRIVATE_KEY,
+  },
+});
+
+const myBucket = gc.bucket(process.env.GOOGLE_CLOUD_BUCKET);
+
 exports.uploadProductImages = upload.fields([
   { name: "image", maxCount: 1 },
   { name: "image1", maxCount: 1 },
@@ -41,17 +52,27 @@ exports.resizeProductImages = catchAsyncError(async (req, res, next) => {
   if (!req.files) return next();
 
   if (req.files.image) {
-    req.body.image = `${req.params.id}-main.jpeg`;
-    await sharp(req.files.image[0].buffer)
-      .resize(700, 450)
+    const blob = myBucket.file(`${req.params.id}-main.jpeg`);
+
+    const blobStream = blob.createWriteStream({
+      resumable: false,
+      metadata: {
+        cacheControl: "no-cache",
+      },
+    });
+
+    blobStream.on("error", (err) => console.log(err));
+    const publicUrl = `https://storage.googleapis.com/${process.env.GOOGLE_CLOUD_BUCKET}/${req.params.id}-main.jpeg`;
+
+    req.body.image = publicUrl;
+
+    blobStream.on("finish", () => {});
+    const imageBuffer = await sharp(req.files.image[0].buffer)
+      .resize(300, 300)
       .toFormat("jpeg")
       .jpeg({ quality: 90 })
-      .toFile(
-        path.join(
-          __dirname,
-          `../../frontend/build/images/products/${req.body.image}`
-        )
-      );
+      .toBuffer();
+    blobStream.end(imageBuffer);
   }
   if (
     req.files.image1 ||
@@ -61,26 +82,38 @@ exports.resizeProductImages = catchAsyncError(async (req, res, next) => {
     req.files.image5
   ) {
     const index = req.body.index;
+    const filename = `${req.params.id}-(${Number(index)}).jpeg`;
+
+    const publicUrl = `https://storage.googleapis.com/${process.env.GOOGLE_CLOUD_BUCKET}/${filename}`;
+
     req.files.image1
-      ? (req.body.image1 = `${req.params.id}-(${Number(index)}).jpeg`)
+      ? (req.body.image1 = publicUrl)
       : req.files.image2
-      ? (req.body.image2 = `${req.params.id}-(${Number(index)}).jpeg`)
+      ? (req.body.image2 = publicUrl)
       : req.files.image3
-      ? (req.body.image3 = `${req.params.id}-(${Number(index)}).jpeg`)
+      ? (req.body.image3 = publicUrl)
       : req.files.image4
-      ? (req.body.image4 = `${req.params.id}-(${Number(index)}).jpeg`)
-      : req.files.image5 &&
-        (req.body.image5 = `${req.params.id}-(${Number(index)}).jpeg`);
+      ? (req.body.image4 = publicUrl)
+      : req.files.image5 && (req.body.image5 = publicUrl);
 
     Object.values({ ...req.files })[0].map(async (file) => {
-      const filename = `${req.params.id}-(${Number(index)}).jpeg`;
-      await sharp(file.buffer)
+      const blob = myBucket.file(filename);
+
+      const blobStream = blob.createWriteStream({
+        resumable: false,
+        metadata: {
+          cacheControl: "no-cache",
+        },
+      });
+      blobStream.on("error", (err) => console.log(err));
+
+      blobStream.on("finish", () => {});
+      const imageBuffer = await sharp(file.buffer)
         .resize(400, 350)
         .toFormat("jpeg")
         .jpeg({ quality: 70 })
-        .toFile(
-          path.join(__dirname, `../../frontend/build/images/products`, filename)
-        );
+        .toBuffer();
+      blobStream.end(imageBuffer);
     });
   }
   next();

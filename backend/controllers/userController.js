@@ -2,12 +2,12 @@ const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const sharp = require("sharp");
 const path = require("path");
+const { Storage } = require("@google-cloud/storage");
+
 const User = require("../models/userModel");
 const AppError = require("../utils/AppError");
 const catchAsyncError = require("../utils/catchAsyncError");
 const factory = require("./factoryHandler");
-
-const mydir = path.resolve();
 
 const filterObj = (obj, ...allowed) => {
   const newObj = {};
@@ -32,14 +32,14 @@ exports.getMe = catchAsyncError(async (req, res, next) => {
 
 exports.updateMe = catchAsyncError(async (req, res, next) => {
   const filteredBody = filterObj(req.body, "name", "email", "password");
-  if (req.file) filteredBody.photo = req.file.filename;
+  if (req.file) filteredBody.photo = req.body.photo;
   const user = await User.findByIdAndUpdate(req.user.id, filteredBody, {
     new: true,
     runValidators: true,
   });
 
   const token = signJWT(user._id);
-
+  res.setHeader("Cache-Control", "no-store");
   res.status(200).json({
     status: "success",
     data: user,
@@ -93,23 +93,47 @@ const upload = multer({
   fileFilter: filterMulter,
 });
 
+const gc = new Storage({
+  projectId: process.env.GOOGLE_CLOUD_PROJECT_ID,
+  credentials: {
+    client_email: process.env.GOOGLE_CLOUD_CLIENT_EMAIL,
+    private_key: process.env.GOOGLE_CLOUD_PRIVATE_KEY,
+  },
+});
+
+const myBucket = gc.bucket(process.env.GOOGLE_CLOUD_BUCKET);
+myBucket.setMetadata(
+  {
+    lifecycle: null,
+  },
+  function (err, apiResponse) {}
+);
 exports.uploadUserPhoto = upload.single("photo");
 
 exports.resizeUserPhoto = catchAsyncError(async (req, res, next) => {
   if (!req.file) return next();
-
   req.file.filename = `${req.user.email.split(".")[0]}-${req.user._id}.jpeg`;
 
-  await sharp(req.file.buffer)
+  const blob = myBucket.file(req.file.filename);
+
+  const blobStream = blob.createWriteStream({
+    resumable: false,
+    metadata: {
+      "Cache-Control": "private, max-age=0",
+    },
+  });
+
+  blobStream.on("error", (err) => console.log(err));
+  const publicUrl = `https://storage.googleapis.com/${process.env.GOOGLE_CLOUD_BUCKET}/${req.file.filename}`;
+  req.body.photo = publicUrl;
+  blobStream.on("finish", () => {});
+  const imageBuffer = await sharp(req.file.buffer)
     .resize(300, 300)
     .toFormat("jpeg")
     .jpeg({ quality: 90 })
-    .toFile(
-      path.join(
-        __dirname,
-        `../../frontend/build/images/users/${req.file.filename}`
-      )
-    );
+    .toBuffer();
+
+  blobStream.end(imageBuffer);
 
   next();
 });

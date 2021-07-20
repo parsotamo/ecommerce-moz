@@ -1,11 +1,6 @@
 const catchAsyncError = require("../utils/catchAsyncError");
 const APIFeatures = require("../utils/APIFeatures");
 
-const updateOptions = {
-  new: true,
-  runValidators: true,
-};
-
 exports.getAll = (Model) =>
   catchAsyncError(async (req, res, next) => {
     let filter = {};
@@ -57,6 +52,7 @@ exports.getOne = (Model) =>
   catchAsyncError(async (req, res, next) => {
     const doc = await Model.findById(req.params.id);
     req.params.id;
+    res.setHeader("Cache-Control", "no-store");
     res.status(200).json({
       status: "success",
       data: doc,

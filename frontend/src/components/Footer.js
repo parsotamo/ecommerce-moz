@@ -26,7 +26,7 @@ const Footer = () => {
               <div className="owner-box-photo">
                 <img
                   src="/images/users/Ilan_Parso.jpg"
-                  alt=""
+                  alt="Foto do Desenvolvedor"
                   className="owner-photo"
                 />
               </div>

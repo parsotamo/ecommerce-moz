@@ -1,0 +1,8 @@
+.detail-product-image {
+  width: 80%;
+  max-height: 40rem;
+  border: 3px ridge $color-light-1;
+  @media only screen and (max-width: 991px) {
+    width: 100%;
+  }
+}

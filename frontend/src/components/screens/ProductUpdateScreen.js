@@ -276,7 +276,7 @@ const ProductUpdateScreen = ({ history, match }) => {
                 <div className="col-sm-4 mb-5">
                   <div className="form-group mb-3">
                     <img
-                      src={`/images/products/${image}`}
+                      src={image}
                       className="img-fluid card-img"
                       alt="images de produto"
                       height="150"
@@ -307,7 +307,7 @@ const ProductUpdateScreen = ({ history, match }) => {
                       <div className="col-sm-4 mb-5" key={ind + 1}>
                         <div className="form-group mb-3">
                           <img
-                            src={`/images/products/${currentImage}`}
+                            src={currentImage}
                             className="img-fluid card-img"
                             alt="images de produto"
                             height="150"

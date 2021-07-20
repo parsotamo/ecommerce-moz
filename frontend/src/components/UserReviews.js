@@ -31,10 +31,10 @@ const UserReviews = ({ reviews, loading }) => {
                   {reviews.map((review) => (
                     <Carousel.Item key={review._id} className="text-center">
                       <img
-                        src={`/images/users/${review.user.photo}`}
+                        src={review.user.photo}
                         width="150"
                         className="img-fluid rounded-circle m-5"
-                        alt=""
+                        alt="Foto comentarista"
                       />
                       <blockquote className="blockquote text-white lead mb-5">
                         {review.user.name}

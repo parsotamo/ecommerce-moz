@@ -28,52 +28,47 @@ import "react-toastify/dist/ReactToastify.css";
 import SocketContext from "../context/SocketContext";
 import io from "socket.io-client";
 
-const socket = io.connect(`https://comercio-moz.herokuapp.com`, {
-  reconnection: true,
-  reconnectionDelay: 500,
-  reconnectionAttempts: 10,
-});
+// const socket = io.connect(`https://comercio-moz.herokuapp.com`, {
+//   reconnection: true,
+//   reconnectionDelay: 500,
+//   reconnectionAttempts: 10,
+// });
 
 const App = () => {
   return (
     <React.Fragment>
       <Router history={history}>
-        <SocketContext.Provider value={socket}>
-          <Header />
-          <Switch>
-            <Route path="/" exact component={HomeScreen} />
-            <Route path="/product/:id" component={ProductScreen} />
-            <Route path="/cart/:id?" component={CartScreen} />
-            <Route path="/shipping" component={ShippingScreen} />
-            <Route path="/payment" component={PaymentScreen} />
-            <Route path="/placeorder" component={PlaceOrderScreen} />
-            <Route path="/order/:id" component={OrderScreen} />
-            <Route path="/login" component={LoginScreen} />
-            <Route path="/register" component={RegisterScreen} />
-            <Route path="/profile" component={ProfileScreen} />
+        {/* <SocketContext.Provider
+        value={socket}
+        > */}
+        <Header />
+        <Switch>
+          <Route path="/" exact component={HomeScreen} />
+          <Route path="/product/:id" component={ProductScreen} />
+          <Route path="/cart/:id?" component={CartScreen} />
+          <Route path="/shipping" component={ShippingScreen} />
+          <Route path="/payment" component={PaymentScreen} />
+          <Route path="/placeorder" component={PlaceOrderScreen} />
+          <Route path="/order/:id" component={OrderScreen} />
+          <Route path="/login" component={LoginScreen} />
+          <Route path="/register" component={RegisterScreen} />
+          <Route path="/profile" component={ProfileScreen} />
+          <Route path="/admin/users/update/:id" component={UserUpdateScreen} />
+          <Route
+            path="/admin/products/update/:id"
+            component={ProductUpdateScreen}
+          />
+          <Route path="/admin/products/new/" component={ProductCreateScreen} />
+          <Route
+            path="/admin/products/:isUpdated?"
+            component={ProductListScreen}
+          />
+          <Route path="/admin/users" component={UserListScreen} />
+          <Route path="/admin/orders" component={OrderListScreen} />
 
-            <Route
-              path="/admin/users/update/:id"
-              component={UserUpdateScreen}
-            />
-            <Route
-              path="/admin/products/update/:id"
-              component={ProductUpdateScreen}
-            />
-            <Route
-              path="/admin/products/new/"
-              component={ProductCreateScreen}
-            />
-            <Route
-              path="/admin/products/:isUpdated?"
-              component={ProductListScreen}
-            />
-            <Route path="/admin/users" component={UserListScreen} />
-            <Route path="/admin/orders" component={OrderListScreen} />
-
-            {/* <Route path="/admin/chat/:userId?" component={ChatScreen} /> */}
-          </Switch>
-        </SocketContext.Provider>
+          {/* <Route path="/admin/chat/:userId?" component={ChatScreen} /> */}
+        </Switch>
+        {/* </SocketContext.Provider> */}
         <ToastContainer
           position={toast.POSITION.TOP_RIGHT}
           autoClose={3600000}

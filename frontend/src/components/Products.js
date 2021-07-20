@@ -50,8 +50,8 @@ const Products = () => {
                   <LinkContainer to={`/product/${product._id}`}>
                     <img
                       className="card-img-top"
-                      src={`/images/products/${product.image}`}
-                      alt="main photo"
+                      src={product.image}
+                      alt="foto principal de produto"
                     />
                   </LinkContainer>
                   <h2>

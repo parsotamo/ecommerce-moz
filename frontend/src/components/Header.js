@@ -106,11 +106,6 @@ const Header = () => {
                           Compras
                         </NavDropdown.Item>
                       </LinkContainer>
-                      {/* <LinkContainer to="/admin/chat">
-                        <NavDropdown.Item variant="light">
-                          Chat
-                        </NavDropdown.Item>
-                      </LinkContainer> */}
                     </NavDropdown>
                   )}
                   <li className="nav-item">
@@ -121,7 +116,8 @@ const Header = () => {
                             {user.name}
                           </span>
                           <img
-                            src={`/images/users/${user.photo}`}
+                            alt="profile"
+                            src={user.photo}
                             className="img-fluid rounded-circle"
                             height="30"
                             width="30"
@@ -225,7 +221,8 @@ const Header = () => {
                       <LinkContainer to="/profile">
                         <div className="nav-user-box">
                           <img
-                            src={`/images/users/${user.photo}`}
+                            alt="profile"
+                            src={user.photo}
                             className="img-fluid rounded-circle user-img"
                             height="50"
                             width="50"

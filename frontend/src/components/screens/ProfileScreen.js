@@ -19,6 +19,7 @@ const ProfileScreen = ({ history }) => {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [message, setMessage] = useState("");
+
   const [uploadPhoto, setUploadPhoto] = useState(false);
 
   const { userInfo } = useSelector((state) => state.userLogin);
@@ -55,12 +56,13 @@ const ProfileScreen = ({ history }) => {
     setUploadPhoto(true);
     try {
       const { data: response } = await axios.patch(
-        "/api/users/updateMe/",
+        "/api/users/updateMe",
         formData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${userInfo.token}`,
+            "Cache-Control": "private, max-age=0",
           },
         }
       );
@@ -101,24 +103,27 @@ const ProfileScreen = ({ history }) => {
             <h1 className="text-uppercase text-center my-5">
               Detalhes de Conta
             </h1>
-
-            <div className="form-group text-center mb-3">
-              <img
-                src={`/images/users/${photo}`}
-                className="img-fluid img-thumbnail rounded-circle mb-5"
-                width="200"
-                height="200"
-                onChange={(e) => setPhoto(e.target.value)}
-              />
-
-              <input
-                id="photo"
-                type="file"
-                className="form-control py-3"
-                onChange={uploadImageHandler}
-              />
-              <label htmlFor="photo">Mudar foto</label>
-            </div>
+            {uploadPhoto ? (
+              <Loading />
+            ) : (
+              <div className="form-group text-center mb-3">
+                <img
+                  alt="Foto Usuário"
+                  src={photo}
+                  className="img-fluid img-thumbnail rounded-circle mb-5"
+                  width="200"
+                  height="200"
+                  onChange={(e) => setPhoto(e.target.value)}
+                />
+                <input
+                  id="photo"
+                  type="file"
+                  className="form-control py-3"
+                  onChange={uploadImageHandler}
+                />
+                <label htmlFor="photo">Mudar foto</label>
+              </div>
+            )}
 
             <div className="form-group mb-3">
               <label className="fs-5" htmlFor="name">
