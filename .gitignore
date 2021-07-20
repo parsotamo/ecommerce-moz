@@ -5,9 +5,10 @@ node_modules/
 /frontend/node_modules
 /.pnp
 .pnp.js
+.vercel
+vercel.json
 #testing
 /coverage
-
 #production
 /frontend/build
 
