@@ -62,7 +62,6 @@ const ProfileScreen = ({ history }) => {
           headers: {
             "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${userInfo.token}`,
-            "Cache-Control": "private, max-age=0",
           },
         }
       );

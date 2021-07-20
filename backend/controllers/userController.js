@@ -39,7 +39,6 @@ exports.updateMe = catchAsyncError(async (req, res, next) => {
   });
 
   const token = signJWT(user._id);
-  res.setHeader("Cache-Control", "no-store");
   res.status(200).json({
     status: "success",
     data: user,
@@ -119,7 +118,7 @@ exports.resizeUserPhoto = catchAsyncError(async (req, res, next) => {
   const blobStream = blob.createWriteStream({
     resumable: false,
     metadata: {
-      "Cache-Control": "private, max-age=0",
+      cacheControl: "private, max-age=0",
     },
   });
 

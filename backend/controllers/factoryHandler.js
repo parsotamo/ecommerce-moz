@@ -52,7 +52,6 @@ exports.getOne = (Model) =>
   catchAsyncError(async (req, res, next) => {
     const doc = await Model.findById(req.params.id);
     req.params.id;
-    res.setHeader("Cache-Control", "no-store");
     res.status(200).json({
       status: "success",
       data: doc,
