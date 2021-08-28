@@ -30,7 +30,16 @@ app.use(express.json());
 
 app.use(mongoSanitize());
 // app.use(xss());
-app.use(cors({ origin: "*" }));
+
+const allowedOrigins = [
+  "capacitor://localhost",
+  "ionic://localhost",
+  "http://localhost",
+  "http://localhost:8080",
+  "http://localhost:8100",
+];
+
+app.use(cors({ origin: allowedOrigins }));
 
 // app.use((req, res, next) => {
 //   res.setHeader;
