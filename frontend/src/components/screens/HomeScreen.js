@@ -1,11 +1,7 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import NewProduct from "../NewProduct";
 import { fetchNewProducts, getReviewsUsers } from "../../actions";
-import { useLocation, Link } from "react-router-dom";
-import { LinkContainer } from "react-router-bootstrap";
-import Message from "../Message";
-import Rating from "../Rating";
 import Products from "../Products";
 import UserReviews from "../UserReviews";
 import Banner from "../Banner";
@@ -14,6 +10,7 @@ import _ from "lodash";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
+
   const { error, loading, success, newProducts } = useSelector(
     (state) => state.newProducts
   );

@@ -59,7 +59,6 @@ const ProductUpdateScreen = ({ history, match }) => {
         setCategory(product.category);
         setCountInStock(product.countInStock);
         setDescription(product.description);
-        console.log([image1, image2, image3, image4, image5]);
       }
     } else if (userInfo.role !== "admin") {
       history.push("/");
@@ -121,8 +120,6 @@ const ProductUpdateScreen = ({ history, match }) => {
     const index = [image1, image2, image3, image4, image5].findIndex(
       (el) => el === "" || el === undefined
     );
-    console.log(index);
-
     await uploadImageSetup(file, index + 1);
   };
 
@@ -155,147 +152,146 @@ const ProductUpdateScreen = ({ history, match }) => {
       setDeleteImage(false);
       dispatch(fetchProduct(productId));
     } catch (error) {
-      console.log(error.response.data);
       setDeleteImage(false);
     }
   };
 
   return (
-    <Container className="u-padding-bottom-huge">
+    <Container className='u-padding-bottom-huge'>
       {loading && <Loading />};
-      {error && <Message variant="danger">{error}</Message>}
+      {error && <Message variant='danger'>{error}</Message>}
       {success && (
         <form onSubmit={onSubmitHandler}>
-          <h1 className="text-uppercase my-5">Actualizar Producto</h1>
+          <h1 className='text-uppercase my-5'>Actualizar Producto</h1>
 
-          <div className="row">
-            <div className="col-sm-5">
-              <div className="form-group mb-3">
-                <label className="fs-5" htmlFor="name">
+          <div className='row'>
+            <div className='col-sm-5'>
+              <div className='form-group mb-3'>
+                <label className='fs-5' htmlFor='name'>
                   Nome de Produto
                 </label>
                 <input
-                  id="name"
-                  type="text"
+                  id='name'
+                  type='text'
                   value={name || " "}
-                  className="form-control py-3"
+                  className='form-control py-3'
                   onChange={(e) => setName(e.target.value)}
                 />
               </div>
 
-              <div className="form-group mb-3">
-                <label className="fs-5" htmlFor="price">
+              <div className='form-group mb-3'>
+                <label className='fs-5' htmlFor='price'>
                   Preço
                 </label>
                 <input
-                  id="price"
-                  type="number"
+                  id='price'
+                  type='number'
                   value={price || " "}
-                  className="form-control py-3"
+                  className='form-control py-3'
                   onChange={(e) => setPrice(e.target.value)}
                 />
               </div>
 
-              <div className="form-group mb-3">
-                <label className="fs-5" htmlFor="brand">
+              <div className='form-group mb-3'>
+                <label className='fs-5' htmlFor='brand'>
                   Marca
                 </label>
                 <input
-                  id="brand"
-                  type="text"
+                  id='brand'
+                  type='text'
                   value={brand || " "}
-                  className="form-control py-3"
+                  className='form-control py-3'
                   onChange={(e) => setBrand(e.target.value)}
                 />
               </div>
 
-              <div className="form-group mb-3">
-                <label className="fs-5" htmlFor="category">
+              <div className='form-group mb-3'>
+                <label className='fs-5' htmlFor='category'>
                   Categoria
                 </label>
                 <input
-                  id="category"
-                  type="text"
+                  id='category'
+                  type='text'
                   value={category || " "}
-                  className="form-control py-3"
+                  className='form-control py-3'
                   onChange={(e) => setCategory(e.target.value)}
                 />
               </div>
 
-              <div className="form-group mb-3">
-                <label className="fs-5" htmlFor="countInStock">
+              <div className='form-group mb-3'>
+                <label className='fs-5' htmlFor='countInStock'>
                   Quantidade Stock
                 </label>
                 <input
-                  id="countInStock"
-                  type="text"
+                  id='countInStock'
+                  type='text'
                   value={countInStock || " "}
-                  className="form-control py-3"
+                  className='form-control py-3'
                   onChange={(e) => setCountInStock(e.target.value)}
                 />
               </div>
 
-              <div className="form-group mb-3">
-                <label className="fs-5" htmlFor="description">
+              <div className='form-group mb-3'>
+                <label className='fs-5' htmlFor='description'>
                   Descrição
                 </label>
                 <textarea
-                  className="form-control"
-                  rows="5"
-                  id="description"
+                  className='form-control'
+                  rows='5'
+                  id='description'
                   value={description || " "}
                   onChange={(e) => setDescription(e.target.value)}
                 ></textarea>
               </div>
               <button
-                type="submit"
+                type='submit'
                 onClick={onSubmitHandler}
-                className="btn btn-primary btn-lg py-3"
+                className='btn btn-primary btn-lg py-3'
               >
                 Actualizar
               </button>
             </div>
 
-            <div className="col-sm-6 ms-auto">
-              <div className="row">
+            <div className='col-sm-6 ms-auto'>
+              <div className='row'>
                 {[image1, image2, image3, image4, image5].filter(
                   (el) => el !== undefined && el !== ""
                 ).length < 5 && (
-                  <div className="col-12 mb-5">
+                  <div className='col-12 mb-5'>
                     <input
-                      id="pickImg"
-                      type="file"
-                      className="d-none"
+                      id='pickImg'
+                      type='file'
+                      className='d-none'
                       onChange={addProductHandler}
                     />
-                    <label htmlFor="pickImg" className="btn btn-primary btn-lg">
-                      Adicionar Imagem <i className="fas fa-plus"></i>
+                    <label htmlFor='pickImg' className='btn btn-primary btn-lg'>
+                      Adicionar Imagem <i className='fas fa-plus'></i>
                     </label>
                   </div>
                 )}
-                <div className="col-sm-4 mb-5">
-                  <div className="form-group mb-3">
+                <div className='col-sm-4 mb-5'>
+                  <div className='form-group mb-3'>
                     <img
                       src={image}
-                      className="img-fluid card-img"
-                      alt="images de produto"
-                      height="150"
+                      className='img-fluid card-img'
+                      alt='images de produto'
+                      height='150'
                     />
                     <input
-                      id="image"
-                      type="text"
+                      id='image'
+                      type='text'
                       value={image || ""}
-                      className="form-control py-3"
+                      className='form-control py-3'
                       onChange={(e) => setImage(e.target.value)}
                     />
-                    <label className="fs-5" htmlFor="upload">
+                    <label className='fs-5' htmlFor='upload'>
                       Actualizar Imagem
                     </label>
                     <input
                       ref={imageInput}
-                      id="upload"
-                      type="file"
-                      className="form-control py-3"
+                      id='upload'
+                      type='file'
+                      className='form-control py-3'
                       onChange={uploadProductImage}
                     />
                     {uploadImage && <Loading />}
@@ -304,19 +300,19 @@ const ProductUpdateScreen = ({ history, match }) => {
                 {[image1, image2, image3, image4, image5].map(
                   (currentImage, ind) =>
                     currentImage && (
-                      <div className="col-sm-4 mb-5" key={ind + 1}>
-                        <div className="form-group mb-3">
+                      <div className='col-sm-4 mb-5' key={ind + 1}>
+                        <div className='form-group mb-3'>
                           <img
                             src={currentImage}
-                            className="img-fluid card-img"
-                            alt="images de produto"
-                            height="150"
+                            className='img-fluid card-img'
+                            alt='images de produto'
+                            height='150'
                           />
                           <input
-                            id="image"
-                            type="text"
+                            id='image'
+                            type='text'
                             value={currentImage || ""}
-                            className="form-control py-3"
+                            className='form-control py-3'
                             onChange={(e) =>
                               ind + 1 === 1
                                 ? setImage1(e.target.value)
@@ -329,22 +325,22 @@ const ProductUpdateScreen = ({ history, match }) => {
                                 : ind + 1 === 5 && setImage5(e.target.value)
                             }
                           />
-                          <label className="fs-5" htmlFor="upload">
+                          <label className='fs-5' htmlFor='upload'>
                             Actualizar Imagem
                           </label>
                           <input
                             ref={imageInput}
-                            id="upload"
-                            type="file"
-                            className="form-control py-3"
+                            id='upload'
+                            type='file'
+                            className='form-control py-3'
                             onChange={(e) => uploadProductImage(e, ind + 1)}
                           />
                           {uploadImage && <Loading />}
                         </div>
                         <button
                           onClick={(e) => deleteProductImageHandler(e, ind + 1)}
-                          type="button"
-                          className="btn btn-danger btn-sm"
+                          type='button'
+                          className='btn btn-danger btn-sm'
                         >
                           Remover
                         </button>
