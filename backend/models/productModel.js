@@ -64,6 +64,11 @@ const productSchema = new mongoose.Schema(
       type: Date,
       default: new Date(),
     },
+    active: {
+      type: Boolean,
+      default: true,
+      select: false,
+    },
   },
   {
     toJSON: { virtuals: true },
