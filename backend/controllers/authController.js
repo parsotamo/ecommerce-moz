@@ -47,7 +47,6 @@ exports.login = catchAsyncError(async (req, res, next) => {
   if (!user || !(await user.correctPassword(password, user.password))) {
     return next(new AppError("email ou password incorrecto", 400));
   }
-
   const token = signJWT(user._id);
   res.status(200).json({
     status: "success",

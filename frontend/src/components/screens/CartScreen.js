@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { addToCart, removeFromCart } from "../../actions";
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { addToCart, removeFromCart } from '../../actions';
 
 const CartScreen = ({ match, location, history }) => {
   const id = match.params.id;
-  const qty = location.search ? Number(location.search.split("=")[1]) : 1;
+  const qty = location.search ? Number(location.search.split('=')[1]) : 1;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -20,9 +20,9 @@ const CartScreen = ({ match, location, history }) => {
 
   const checkOutHandler = () => {
     if (userInfo) {
-      history.push("/shipping");
+      history.push('/shipping');
     } else {
-      history.push("/login?redirect=shipping");
+      history.push('/login?redirect=shipping');
     }
   };
 
@@ -46,7 +46,7 @@ const CartScreen = ({ match, location, history }) => {
                     <div className='row'>
                       <div className='col-2'>
                         <img
-                          src={`/images/products/${item.image}`}
+                          src={`${item.image}`}
                           className='img-fluid'
                           alt='new product'
                         />
@@ -102,10 +102,10 @@ const CartScreen = ({ match, location, history }) => {
                 </h1>
 
                 <h1>
-                  Preço total:{" "}
+                  Preço total:{' '}
                   {cartItems
                     .reduce((acc, item) => acc + item.qty * item.price, 0)
-                    .toFixed(2)}{" "}
+                    .toFixed(2)}{' '}
                   MTS
                 </h1>
               </li>

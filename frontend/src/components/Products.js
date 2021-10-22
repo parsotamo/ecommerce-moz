@@ -1,125 +1,103 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
-import { LinkContainer } from "react-router-bootstrap";
-import Rating from "./Rating";
-import Loading from "./Loading";
-import Paginate from "./Paginate";
-import { fetchProducts } from "../actions";
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link, useLocation } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
+import { Tooltip, OverlayTrigger, Button } from 'react-bootstrap';
+import Rating from './Rating';
+import Loading from './Loading';
+import moment from 'moment';
 
-const Products = () => {
-  const dispatch = useDispatch();
-  let location = useLocation();
-
-  const queryArr = location.search.split("&");
-  let currentPage, keyword, category, price, avgRating;
-
-  queryArr.forEach((el) => {
-    if (el.split("page=")[1]) {
-      currentPage = el.split("page=")[1];
-    } else if (el.split("keyword=")[1]) {
-      keyword = el.split("keyword=")[1];
-    } else if (el.split("category=")[1]) {
-      category = el.split("category=")[1];
-    } else if (el.split("price=")[1]) {
-      price = el.split("price=")[1];
-    } else if (el.split("avgRating=")[1]) {
-      avgRating = el.split("avgRating=")[1];
-    }
-  });
-
-  const { loading, products, error, page, pages } = useSelector(
-    (state) => state.products
-  );
-  useEffect(() => {
-    dispatch(fetchProducts(currentPage, keyword, category, price, avgRating));
-  }, [dispatch, currentPage, keyword, category, price, avgRating]);
+const Products = ({ loading, products, error }) => {
   return (
-    <div className='container'>
-      <div className='row'>
-        {loading && <Loading />}
-        {!error && (
-          <React.Fragment>
-            {products.map((product) => (
-              <div key={product._id} className='col-md-6 col-lg-4 mb-4'>
-                <div className='card listing-preview'>
-                  <LinkContainer to={`/product/${product._id}`}>
-                    <img
-                      className='card-img-top'
-                      src={product.image}
-                      alt='foto principal de produto'
-                    />
-                  </LinkContainer>
-                  <h2>
-                    <span className='badge badge-secondary text-dark'>
-                      {product.price} MZN
-                    </span>
-                  </h2>
-                  <div className='card-body fs-4'>
-                    <div className='listing-heading text-center'>
-                      <LinkContainer to={`/product/${product._id}`}>
-                        <h4 className='text-primary'>{product.name}</h4>
-                      </LinkContainer>
-                      <Rating
-                        star={product.avgRating}
-                        reviews={product.numReviews}
-                      />
-                    </div>
-                    <hr />
-                    <div className='row py-2 text-secondary'>
-                      <div className='col-6'>
-                        <i className='fas fa-th-large'></i> {product.category}
-                      </div>
-                      <div className='col-6'>
-                        <i className='fas fa-building'></i> {product.brand}
-                      </div>
-                    </div>
-                    <div className='row py-2 text-secondary'>
-                      <div className='col-6'>
-                        <i className='fas fa-warehouse'></i>{" "}
-                        {product.countInStock}
-                      </div>
-                      <div className='col-6'>
-                        <i className='fas fa-money-bill'></i> {product.price}{" "}
-                        MZN
-                      </div>
-                    </div>
-                    <hr />
-                    <div className='row py-2 text-secondary'>
-                      <div className='col-12'>
-                        <i className='fas fa-comments'></i> {product.numReviews}
-                      </div>
-                    </div>
-                    <div className='row text-secondary pb-2'>
-                      <div className='col-6'>
-                        <i className='fas fa-clock'></i>{" "}
-                        {product.createdAt.substring(0, 10)}
-                      </div>
-                    </div>
-                    <hr />
-                    <div className='d-grid'>
-                      <Link
-                        to={`product/${product._id}`}
-                        className='btn btn-dark fs-4 py-3'
-                      >
-                        Mais detalhes
-                      </Link>
-                    </div>
-                  </div>
+    <div className='products-wrapper mx-auto'>
+      {loading && <Loading />}
+      {!error &&
+        products &&
+        products.map((product) => (
+          <div key={product._id} className='card product-listing'>
+            {/* <div className='card-header border-0'> */}
+            <LinkContainer to={`/product/${product.slug}/${product._id}`}>
+              <div className='img-wrapper'>
+                <img
+                  className='product-img img-fluid'
+                  src={product.image}
+                  alt='foto principal de produto'
+                />
+              </div>
+            </LinkContainer>
+            {/* </div> */}
+
+            <div className='card-body pt-1'>
+              <span className='product-price'>
+                {new Intl.NumberFormat('pt-PT', {
+                  style: 'currency',
+                  currency: 'MZN',
+                }).format(product.price)}
+              </span>
+              <div className='row'>
+                <LinkContainer to={`/product/${product.slug}/${product._id}`}>
+                  <span className='product-name text-capitalize'>
+                    {product.name.length > 20
+                      ? `${product.name.substring(0, 30)}...`
+                      : product.name}
+                  </span>
+                </LinkContainer>
+              </div>
+              <div className='row justify-content-between py-2 text-secondary'>
+                <div className='col-5'>
+                  <Rating
+                    star={product.avgRating}
+                    reviews={product.numReviews}
+                  />
+                </div>
+                <div className='col-7 text-end'>
+                  <i className='fas fa-sm fa-building text-danger'></i>{' '}
+                  <span>
+                    {product.brand.length > 10
+                      ? `${product.brand.substring(0, 10)}...`
+                      : product.brand}
+                  </span>
                 </div>
               </div>
-            ))}
-            <Paginate
-              pages={pages}
-              page={page}
-              keyword={keyword}
-              category={category}
-              avgRating={avgRating}
-              price={price}
-            />
-          </React.Fragment>
-        )}
-      </div>
+
+              <div className='row py-2 text-secondary'>
+                <div className='col-6'>
+                  <i className='fas fa-sm fa-th-large text-danger'></i>{' '}
+                  {product.category.name}
+                </div>
+                <div className='col-6 text-end'>
+                  <i className='far fa-sm fa-calendar-alt text-danger'></i>{' '}
+                  {moment(product.createdAt).fromNow()}
+                </div>
+                <div className='col-12 py-2'>
+                  <i className='fas fa-sm fa-map-marker-alt text-danger'></i>
+                  &nbsp;
+                  {product.address}, {product.city}
+                </div>
+              </div>
+              <div className='row'>
+                <div className='col-7'>
+                  <i className='fas fa-sm fa-eye text-danger'></i>{' '}
+                  {product.views}
+                </div>
+                <div className='col-5 text-end'>
+                  <i className='fas fa-sm fa-check-square text-danger'></i>
+                  &nbsp;
+                  <span> {product.state}</span>
+                  {/* <OverlayTrigger
+                    key={'top'}
+                    placement={'top'}
+                    overlay={<Tooltip id='tooltip-top'>Curtir</Tooltip>}
+                  >
+                    <Button id='btn-like'>
+                      <i className='far fa-sm fa-heart text-danger icon-like'></i>
+                    </Button>
+                  </OverlayTrigger> */}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
     </div>
   );
 };

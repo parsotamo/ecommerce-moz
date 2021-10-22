@@ -1,0 +1,124 @@
+@import '../abstracts/variables';
+.widget {
+  background: #fff;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
+  padding: 25px 30px 30px;
+  margin-bottom: 30px;
+  border-radius: 2px;
+  font-size: 1.2rem;
+  .widget-header {
+    display: block;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #dedede;
+  }
+}
+
+.dashboard-container {
+  .product-dashboard-table {
+    thead {
+      th {
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        font-weight: bold;
+        letter-spacing: 0.4px;
+      }
+      td {
+        vertical-align: middle;
+        padding: 40px 0;
+      }
+    }
+  }
+  .product-thumb {
+    width: 15%;
+  }
+  .product-details {
+    width: 45%;
+    span {
+      display: block;
+      font-size: 1.1rem;
+      color: #848484;
+      strong {
+        color: #666;
+        width: 30%;
+        display: inline-block;
+      }
+    }
+    .status {
+      color: $color-red-primary;
+    }
+    .status.active {
+      color: #59d659;
+    }
+  }
+  tbody {
+    tr {
+      &:hover {
+        .action {
+          li {
+            color: #fff;
+          }
+          li.edit {
+            background: #59d659;
+          }
+          li.view {
+            background: #50c6e9;
+          }
+          li.delete {
+            background: #ff5252;
+          }
+        }
+      }
+    }
+  }
+  .action li {
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    font-size: 14px;
+    color: #363b4d;
+    text-align: center;
+    display: inline-block;
+    line-height: 40px;
+    &:hover {
+      color: #fff;
+      cursor: pointer;
+    }
+  }
+}
+
+.dashboard-container .product-details .title {
+  font-size: 1.1rem;
+}
+
+.dashboard-container .product-category {
+  width: 15%;
+  text-align: center;
+}
+
+.dashboard-container .action {
+  width: 20%;
+  text-align: center;
+}
+
+.dashboard-container .action span:hover.delete {
+  background: #ff5252;
+}
+
+.dashboard-container .action .list-inline .list-inline-item:not(:last-child) {
+  margin-right: 0px;
+}
+
+.dashboard-container .action .edit {
+  background: #f7f7f7;
+}
+
+.dashboard-container .action .view {
+  background: #f7f7f7;
+}
+
+.dashboard-container .action .delete {
+  background: #f7f7f7;
+}

@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const orderSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.ObjectId,
@@ -62,7 +61,6 @@ const orderSchema = new mongoose.Schema({
     default: new Date(),
   },
 });
-
 orderSchema.pre(/^find/, function (next) {
   this.populate({
     path: "user",
@@ -70,7 +68,5 @@ orderSchema.pre(/^find/, function (next) {
   });
   next();
 });
-
 const Order = mongoose.model("Order", orderSchema);
-
 module.exports = Order;

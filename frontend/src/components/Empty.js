@@ -1,9 +1,9 @@
 const Empty = () => {
   return (
-    <div className="jumbotron">
-      <h1 className="jumbotron-title">
-        Vazio <i className="fas fa-blank"></i>
-      </h1>
+    <div className='jumbotron'>
+      <h3>
+        Nenhum resultado encontrado <i className='far fa-frown-open'></i>
+      </h3>
     </div>
   );
 };

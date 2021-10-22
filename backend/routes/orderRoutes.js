@@ -13,6 +13,7 @@ router
   .post(orderController.createOrder);
 router.route("/:id").get(orderController.getOrder);
 router.route("/:id").delete(orderController.deleteOrder);
+router.route("/:id/pay_mpesa").post(orderController.pay_mpesa);
 router.route("/:id/pay").patch(orderController.updateOrderToPaid);
 router.route("/:id/deliver").patch(orderController.updateOrderToDelivered);
 

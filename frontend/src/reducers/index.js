@@ -1,26 +1,39 @@
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux';
 
 import {
   newProductsReducer,
+  hotProductsReducer,
   productsReducer,
+  popularProductsReducer,
+  userProductsReducer,
+  productsCategoryReducer,
+  relatedProductsReducer,
+  categoriesReducer,
+  subCategoriesReducer,
+  categoryCreateReducer,
   productReducer,
   productReviewsReducer,
   productCreateReducer,
   productDeleteReducer,
   productUpdateReducer,
   productCreateReviewReducer,
-} from "./productReducer";
+  uploadProductImageReducer,
+  uploadProductImagesReducer,
+  updateProductImageReducer,
+  deleteProductImageReducer,
+} from './productReducer';
 
-import { cartReducer } from "./cartReducers";
+import { cartReducer } from './cartReducers';
 
 import {
   createOrderReducer,
   orderDetailsReducer,
   orderListReducer,
   orderPayReducer,
+  orderPayMpesaReducer,
   orderDeliverReducer,
   userOrdersReducer,
-} from "./orderReducers";
+} from './orderReducers';
 
 import {
   usersReducer,
@@ -34,26 +47,38 @@ import {
   userDeleteReducer,
   userChatsReducer,
   newChatContentReducer,
-} from "./userReducers";
+} from './userReducers';
 
-import { reviewsUsersReducer } from "./reviewReducers";
+import { reviewsUsersReducer } from './reviewReducers';
 
 export default combineReducers({
   newProducts: newProductsReducer,
+  hotProducts: hotProductsReducer,
+  popularProducts: popularProductsReducer,
   products: productsReducer,
+  userProducts: userProductsReducer,
+  productsCategory: productsCategoryReducer,
+  relatedProducts: relatedProductsReducer,
+  newCategory: categoryCreateReducer,
   product: productReducer,
   productReviews: productReviewsReducer,
   productCreate: productCreateReducer,
   productCreateReview: productCreateReviewReducer,
   productUpdate: productUpdateReducer,
   productDelete: productDeleteReducer,
-
+  productImage: uploadProductImageReducer,
+  productImages: uploadProductImagesReducer,
+  updateProductImage: updateProductImageReducer,
+  deleteProductImage: deleteProductImageReducer,
+  categories: categoriesReducer,
+  subCategories: subCategoriesReducer,
   cart: cartReducer,
 
   orderList: orderListReducer,
   orderCreate: createOrderReducer,
   orderDetails: orderDetailsReducer,
   orderPay: orderPayReducer,
+  orderPayMpesa: orderPayMpesaReducer,
   orderDeliver: orderDeliverReducer,
 
   userList: usersReducer,

@@ -1,0 +1,42 @@
+.dropzone-container {
+  border-radius: 10px;
+  border: 2px dashed red;
+  padding: 0 !important;
+}
+.dropzone-wrapper {
+  width: 100%;
+  min-height: 13rem;
+  background-color: rgb(247, 234, 234);
+  cursor: pointer;
+
+  &-text {
+    height: 40px;
+  }
+}
+.wrapper-preview {
+  margin-top: 16px;
+  .img-list-preview {
+    box-sizing: border-box;
+  }
+  .wrapper-img {
+    width: 10rem;
+    height: 10rem;
+    border: 1px solid #eaeaea;
+    border-radius: 2px;
+    padding: 4px;
+    display: inline-block;
+    margin-bottom: 8px;
+    margin-right: 8;
+    position: relative;
+  }
+  .img-preview {
+    width: 100%;
+    height: 100%;
+  }
+  .remove-img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+  }
+}

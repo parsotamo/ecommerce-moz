@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { createOrder } from "../../actions";
-import CheckOutSteps from "../CheckOutSteps";
-import Message from "../Message";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { createOrder } from '../../actions';
+import CheckOutSteps from '../CheckOutSteps';
+import Message from '../Message';
 
 const PlaceOrderScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ const PlaceOrderScreen = ({ history }) => {
   useEffect(() => {
     if (success) {
       history.push(`/order/${order._id}`);
-      dispatch({ type: "CREATE_ORDER_RESET" });
+      dispatch({ type: 'CREATE_ORDER_RESET' });
     }
   }, [history, success]);
 
@@ -54,7 +54,7 @@ const PlaceOrderScreen = ({ history }) => {
           <ul className='list-group list-group-flush'>
             <h1 className='text-uppercase'>Detalhes de Entrega</h1>
             <li className='list-group-item my-4 fs-3'>
-              {shippingAddress.address}, {shippingAddress.city},{" "}
+              {shippingAddress.address}, {shippingAddress.city},{' '}
               {shippingAddress.postalCode}, {shippingAddress.country}
             </li>
 
@@ -84,7 +84,7 @@ const PlaceOrderScreen = ({ history }) => {
                       <div className='col'>
                         <Link
                           className='btn text-secondary fs-4'
-                          to={`/product/${item.product}`}
+                          to={`/product/${item.slug}/${item.product}`}
                         >
                           {item.name}
                         </Link>

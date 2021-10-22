@@ -1,20 +1,19 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { LinkContainer } from "react-router-bootstrap";
-import { useLocation } from "react-router-dom";
-import { fetchProducts, deleteProduct } from "../../actions";
-import Message from "../Message";
-import Loading from "../Loading";
-import Paginate from "../Paginate";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useLocation } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
+import { fetchProducts, deleteProduct } from '../../actions';
+import Message from '../Message';
+import Loading from '../Loading';
+import Paginate from '../Paginate';
+import ModalRemove from '../ModalRemove';
 
-const ProductListScreen = ({ history, match }) => {
-  const isUpdated = match.params.isUpdated;
+const ProductListScreen = ({ history }) => {
   const dispatch = useDispatch();
   const location = useLocation();
-  let currentPage = location.search.split("page=")[1];
-  if (currentPage) {
-    currentPage = currentPage.split("&")[0] || 1;
-  }
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [deletePrd, setDeleteProd] = useState('');
+  const [productId, setProductId] = useState('');
 
   const { userInfo } = useSelector((state) => state.userLogin);
   const { loading, products, success, error, page, pages } = useSelector(
@@ -26,87 +25,136 @@ const ProductListScreen = ({ history, match }) => {
 
   useEffect(() => {
     if (!userInfo) {
-      history.push("/login");
-    } else if (userInfo && userInfo.role === "admin") {
-      dispatch(fetchProducts(currentPage));
+      history.push('/login');
+    } else if (
+      (userInfo && userInfo.role === 'admin') ||
+      (userInfo && userInfo.role === 'manager')
+    ) {
+      dispatch(fetchProducts(history.location.search));
     } else {
-      history.push("/");
+      history.push('/');
     }
-  }, [dispatch, history, userInfo, currentPage]);
-
-  useEffect(() => {
-    if (successDelete) {
-      dispatch(fetchProducts());
-    }
-  }, [successDelete]);
-
-  useEffect(() => {
-    if (isUpdated) {
-      dispatch(fetchProducts(currentPage));
-    }
-  }, []);
+  }, [dispatch, history, userInfo, history.location.search, successDelete]);
 
   const deleteProductHandler = (id) => {
     dispatch(deleteProduct(id));
   };
+  const openModal = (id, productName) => {
+    setProductId(id);
+    setDeleteProd(productName);
+    setIsOpen(true);
+  };
 
-  return loading ? (
-    <Loading />
-  ) : error ? (
-    <Message variant="danger">{error}</Message>
-  ) : (
-    <div className="container-fluid product-list">
-      <div className="row mt-5">
-        <div className="col-10 text-end">
-          <LinkContainer to="/admin/products/new/">
-            <button className="btn btn-dark fs-5 py-4 px-3">
-              Adicionar Producto <i className="fas fa-plus"></i>
-            </button>
-          </LinkContainer>
-        </div>
-      </div>
-      <div className="row mt-4">
-        <div className="col-md-10  mx-auto table-responsive-sm">
-          <table className="table table-striped table-hover fs-4">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>NOME</th>
-                <th>PREÇO</th>
-                <th>CATEGORIA</th>
-                <th>MARCA</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {products.map((product) => (
-                <tr key={product._id}>
-                  <td>{product._id}</td>
-                  <td>{product.name}</td>
-                  <td>{product.price}</td>
-                  <td>{product.category}</td>
-                  <td>{product.brand}</td>
-                  <td className="table-btns">
-                    <i
-                      className="fas fa-edit btn fs-4"
-                      onClick={() => {
-                        history.push(`/admin/products/update/${product._id}`);
-                      }}
-                    ></i>
-                    <i
-                      className="fas fa-trash text-danger ms-3 btn fs-4"
-                      onClick={() => {
-                        deleteProductHandler(product._id);
-                      }}
-                    ></i>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+  return (
+    <div className='row mt-5'>
+      <div className='col-sm-10 col-md-8 col-11 mx-auto'>
+        {loading ? (
+          <Loading />
+        ) : error ? (
+          <Message children={error.message} variant='danger' />
+        ) : (
+          success && (
+            <div className='dashboard-container my-adslist'>
+              <h4 className='widget-header'>Todos Anúncios</h4>
+              <table className='table table-responsive bg-white product-dashboard-table'>
+                <thead className='thead-light'>
+                  <tr>
+                    <th>Imagem</th>
+                    <th>Título de Produto</th>
+                    <th className='text-center'>Categoria</th>
+                    <th className='text-center'>Acção</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {products.map((product) => (
+                    <tr key={product._id}>
+                      <ModalRemove
+                        modalIsOpen={modalIsOpen}
+                        setIsOpen={setIsOpen}
+                        deleteHandler={deleteProductHandler}
+                        id={productId}
+                        name={deletePrd}
+                      />
+                      <td className='product-thumb'>
+                        <img
+                          width='80px'
+                          height='auto'
+                          src={product.image}
+                          alt='Imagem de Produto'
+                          onError={(e) =>
+                            (e.target.src =
+                              'https://comercio-moz.s3.us-east-2.amazonaws.com/default/imagem-nao-disponivel.jpeg')
+                          }
+                        />
+                      </td>
+                      <td className='product-details'>
+                        <h5 className='title'>{product.name}</h5>
+                        <span className='add-id'>
+                          <strong>ID do Anúncio:</strong> {product._id}
+                        </span>
+                        <span>
+                          <strong>Postado em: </strong>
+                          <time>{product.createdAt}</time>{' '}
+                        </span>
 
-          <Paginate pages={pages} page={page} />
-        </div>
+                        {product.active ? (
+                          <span className='status active'>
+                            <strong>Estado</strong>
+                            activo
+                          </span>
+                        ) : (
+                          <span className='status'>
+                            <strong>Estado</strong>
+                            inativo
+                          </span>
+                        )}
+
+                        <span className='location'>
+                          <strong>Localização</strong>Maputo
+                        </span>
+                      </td>
+                      <td className='product-category'>
+                        <span className='categories'>
+                          {product.category.name}
+                        </span>
+                      </td>
+                      <td className='action'>
+                        <ul className='d-flex justify-content-center align-items-center'>
+                          <LinkContainer
+                            className='view'
+                            to={`/product/${product.slug}/${product._id}`}
+                          >
+                            <li className='list-inline-item'>
+                              <i className='fas fa-eye'></i>
+                            </li>
+                          </LinkContainer>
+                          <LinkContainer
+                            className='edit'
+                            to={`/admin/products/update/${product._id}`}
+                          >
+                            <li className='list-inline-item'>
+                              <i className='fas fa-pen'></i>
+                            </li>
+                          </LinkContainer>
+
+                          <li className='list-inline-item delete'>
+                            <i
+                              className='fas fa-trash'
+                              onClick={(e) =>
+                                openModal(product._id, product.name)
+                              }
+                            ></i>
+                          </li>
+                        </ul>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <Paginate pages={pages} page={page} />
+            </div>
+          )
+        )}
       </div>
     </div>
   );

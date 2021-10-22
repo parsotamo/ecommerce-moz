@@ -2,10 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { PayPalButton } from "react-paypal-button-v2";
-import { deliverOrder, getOrderDetails, payOrder } from "../../actions";
+import {
+  deliverOrder,
+  getOrderDetails,
+  payOrder,
+  payMpesa,
+} from "../../actions";
 import Message from "../Message";
 import Loading from "../Loading";
-import axios from "axios";
+import { addPaypalScript } from "../../components/paypal";
 
 const OrderScreen = ({ match, history }) => {
   const orderId = match.params.id;
@@ -13,6 +18,9 @@ const OrderScreen = ({ match, history }) => {
   const dispatch = useDispatch();
 
   const [sdkReady, setSdkReady] = useState(false);
+
+  const [phoneNumber, setPhoneNumber] = useState("");
+
   const { userInfo } = useSelector((state) => state.userLogin);
 
   if (!userInfo) {
@@ -29,19 +37,6 @@ const OrderScreen = ({ match, history }) => {
     (state) => state.orderDeliver
   );
 
-  const addPaypalScript = async () => {
-    const { data: clientId } = await axios.get("/api/config/paypal");
-    const script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
-    script.async = true;
-
-    script.onload = () => {
-      setSdkReady(true);
-    };
-    document.body.appendChild(script);
-  };
-
   useEffect(() => {
     if (!order || successPay || successDeliver || order._id != orderId) {
       dispatch({ type: "ORDER_PAY_RESET" });
@@ -49,12 +44,22 @@ const OrderScreen = ({ match, history }) => {
       dispatch(getOrderDetails(orderId));
     } else if (!order.isPaid) {
       if (!window.paypal) {
-        addPaypalScript();
+        addPaypalScript(setSdkReady);
       } else {
         setSdkReady(true);
       }
     }
   }, [dispatch, order, orderId, successPay, successDeliver]);
+
+  const mpesaPaymentHandler = () => {
+    const paymentData = {
+      from: phoneNumber, // input_CustomerMSISDN
+      reference: "11114", // input_ThirdPartyReference
+      transaction: "T12344CC", // input_TransactionReference
+      amount: order.totalPrice, // input_Amount
+    };
+    dispatch(payMpesa(orderId, paymentData));
+  };
 
   const successPaymentHandler = (paymentResult) => {
     dispatch(payOrder(orderId, paymentResult));
@@ -201,14 +206,39 @@ const OrderScreen = ({ match, history }) => {
               </li>
               {!order.isPaid && (
                 <li className='list-group-item'>
-                  {loadingPay && <Loading />}
-                  {!sdkReady ? (
-                    <Loading />
-                  ) : (
-                    <PayPalButton
-                      amount={order.totalPrice}
-                      onSuccess={successPaymentHandler}
-                    />
+                  {order.paymentMethod === "mpesa" && (
+                    <>
+                      <h5>Mpesa</h5>
+                      <input
+                        type='text'
+                        className='form-control py-4 my-3'
+                        value={phoneNumber}
+                        onChange={(e) => setPhoneNumber(e.target.value)}
+                        placeholder='digite seu contacto'
+                      />
+                      <div className='d-grid'>
+                        <button
+                          type='button'
+                          onClick={mpesaPaymentHandler}
+                          className='btn btn-danger btn-block fs-5 py-4'
+                        >
+                          Submeter Pagamento
+                        </button>
+                      </div>
+                    </>
+                  )}
+                  {order.paymentMethod === "paypal" && (
+                    <>
+                      {loadingPay && <Loading />}
+                      {!sdkReady ? (
+                        <Loading />
+                      ) : (
+                        <PayPalButton
+                          amount={order.totalPrice}
+                          onSuccess={successPaymentHandler}
+                        />
+                      )}
+                    </>
                   )}
                 </li>
               )}

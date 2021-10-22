@@ -1,0 +1,102 @@
+.search_bar {
+  padding: 5rem 3rem;
+  background-color: #eee;
+}
+
+.nav-form-input {
+  padding: 1rem 0;
+  background-color: #fff3;
+  align-items: center;
+  justify-content: center;
+  .form-control:focus {
+    box-shadow: none;
+  }
+  @media only screen and(max-width: 700px) {
+    flex-direction: column;
+    padding: 0;
+    background-color: transparent;
+  }
+  .form-control {
+    font-size: 1.2rem;
+  }
+  .user-img {
+    display: inline;
+  }
+  .input-group-prepend {
+    width: 15rem;
+    & > * {
+      height: 3.5rem;
+      @media only screen and(max-width: 250px) {
+        height: 2.5rem;
+      }
+    }
+
+    @media only screen and(max-width: 767px) {
+      width: 10rem;
+    }
+    @media only screen and(max-width: 700px) {
+      width: 97%;
+      margin-bottom: 2px;
+    }
+  }
+  .input-group-append {
+    @media only screen and(max-width: 700px) {
+      width: 97%;
+    }
+  }
+
+  @media only screen and(max-width: 1199px) {
+    justify-content: center;
+  }
+}
+
+.nav-category {
+  // padding: 1rem 2.5rem;
+  border-radius: 1rem 0 0 1rem;
+  @media only screen and(max-width: 700px) {
+    border-radius: 1rem 1rem 0 0;
+  }
+}
+// .nav-rating {
+//   padding: 1rem 2.5rem;
+// }
+.nav-input {
+  width: 30rem;
+  height: 3.5rem;
+  @media only screen and (max-width: 1100px) {
+    width: 25rem;
+  }
+
+  @media only screen and (max-width: 900px) {
+    width: 18rem;
+  }
+  @media only screen and (max-width: 800px) {
+    width: 16rem;
+  }
+  @media only screen and (max-width: 700px) {
+    width: 100%;
+    margin-bottom: 2px;
+  }
+  @media only screen and(max-width: 250px) {
+    height: 2.5rem;
+  }
+}
+
+.nav-btn {
+  border-radius: 0 10px 10px 0;
+  font-size: 1.2rem;
+  padding: 0 2rem;
+  height: 3.5rem;
+  @media only screen and (max-width: 700px) {
+    width: 100%;
+    border-radius: 0 0 1rem 1rem;
+  }
+  @media only screen and(max-width: 250px) {
+    height: 2.5rem;
+  }
+}
+
+.navbar-nav {
+  width: 100%;
+  justify-content: center;
+}

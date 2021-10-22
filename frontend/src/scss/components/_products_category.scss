@@ -1,0 +1,255 @@
+@import '../abstracts//variables';
+.widget {
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.1);
+  padding: 25px 30px 30px;
+  margin-bottom: 30px;
+  border-radius: 2px;
+
+  .widget-header {
+    display: block;
+    font-size: 1.1rem !important;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  &.category-list {
+    .category-list {
+      padding: 0;
+      &:not(:last-child) {
+        border-bottom: 1px solid #f4f7f9 !important;
+      }
+      &-item {
+        display: flex;
+        padding: 8px 0;
+        transition: all linear 0.3s;
+        text-decoration: none;
+        cursor: pointer;
+        width: 100%;
+
+        &:hover {
+          color: $color-red-primary;
+        }
+      }
+    }
+  }
+  &.filter {
+    .nice-select {
+      width: 100%;
+      .list {
+        width: 100%;
+      }
+    }
+  }
+  &.price-range {
+    b {
+      font-size: 13px;
+      color: #888;
+    }
+    .slider.slider-horizontal {
+      width: 100%;
+    }
+    .slider-handle {
+      background: $color-red-primary;
+    }
+    .slider-track {
+      margin-top: -2px;
+      height: 5px;
+      box-shadow: none;
+      border-radius: 0;
+      background: #f5f5f5;
+    }
+    .slider-selection {
+      background: #dedede;
+      box-shadow: none;
+    }
+  }
+  &.price {
+    background: $color-red-primary;
+    h4 {
+      color: #fff;
+    }
+    p {
+      color: #fff;
+      font-size: 30px;
+      text-align: center;
+      font-weight: bold;
+      margin: 0;
+    }
+  }
+
+  &.map {
+    padding: 10px;
+    #map_canvas {
+      height: 300px;
+    }
+  }
+  &.category {
+    .category-list {
+      &-item {
+        margin-bottom: 8px;
+        cursor: pointer;
+        a {
+          font-size: 15px;
+          letter-spacing: 0;
+          display: block;
+          color: #999;
+          &:hover {
+            color: $color-red-primary;
+          }
+        }
+        &:last-child {
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
+  &.filter {
+    padding-bottom: 17px;
+    .form-1 {
+      margin-bottom: 20px;
+    }
+    .form-check-label {
+      font-size: 14px;
+      color: #999;
+      input {
+        margin-right: 10px;
+      }
+      input[type='checkbox']:checked {
+        .form-check-label {
+          color: $color-red-primary !important;
+        }
+      }
+      &:hover {
+        color: $color-red-primary;
+      }
+    }
+  }
+}
+
+.section-ads-category {
+  padding: 70px 0;
+}
+
+.category-search-filter {
+  background: #f7f7f7;
+  padding: 10px;
+  strong {
+    margin: 0 5px;
+  }
+  .view {
+    text-align: right;
+    ul {
+      display: inline-block;
+      li {
+        &:not(:last-child) {
+          margin-right: 10px;
+        }
+        a {
+          font-size: 15px;
+        }
+      }
+    }
+    .view-switcher {
+      background: #fff;
+      padding: 10px 15px;
+    }
+  }
+}
+.thumb-content {
+  position: relative;
+  .price {
+    font-size: 0.7rem !important;
+    font-weight: 1000;
+    position: absolute;
+    border-radius: 20px;
+    top: 3px;
+    left: 5px;
+    background: linear-gradient(
+      to right,
+      $color-red-primary-light,
+      $color-red-primary-dark
+    );
+    color: #fff;
+    display: inline-block;
+    padding: 2px 4px;
+    font-size: 12px;
+  }
+}
+.product-meta {
+  margin-bottom: 15px;
+  li {
+    margin-right: 15px;
+    a {
+      color: #888;
+      font-size: 12px;
+      i {
+        margin-right: 4px;
+      }
+    }
+  }
+}
+.product-ratings {
+  li {
+    margin-right: 1px;
+    i {
+      font-size: 18px;
+      color: #dedede;
+      cursor: pointer;
+    }
+  }
+  .selected {
+    i {
+      color: $color-red-primary;
+    }
+  }
+}
+
+.rc-slider-track {
+  background-color: #999 !important;
+}
+.rc-slider-handle {
+  background-color: $color-red-primary-light !important;
+  border: solid 1px $color-red-primary-light !important;
+  padding: 0 !important;
+  width: 7px !important;
+  height: 8px;
+  top: 8px;
+
+  &-dragging {
+    box-shadow: 0 0 5px $color-red-primary !important;
+  }
+}
+.price-range {
+  font-size: 8px;
+}
+.category-list {
+  .dropdown-menu {
+    width: 100%;
+    border: none;
+    &.show {
+      position: absolute !important;
+      transform: translate(100%, 0) !important;
+    }
+  }
+  .dropdown-toggle {
+    display: block;
+
+    &::after {
+      position: absolute;
+      top: 50%;
+      right: 3px;
+      transform: rotate(-90deg);
+    }
+  }
+}
+
+.nav-item {
+  &.dropdown {
+  }
+}
+
+.price-range-btn {
+  cursor: pointer;
+}

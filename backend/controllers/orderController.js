@@ -1,11 +1,30 @@
 const Order = require("../models/orderModel");
 const catchAsyncError = require("../utils/catchAsyncError");
 const factory = require("./factoryHandler");
+const client = require("../utils/mpesa_client");
 
 exports.setUserIdToParams = (req, res, next) => {
   if (!req.params.userId) req.params.userId = req.user.id;
   next();
 };
+
+exports.pay_mpesa = catchAsyncError(async (req, res, next) => {
+  const paymentData = req.body;
+  client
+    .receive(paymentData)
+    .then((r) => {
+      res.status(200).json({
+        status: "success",
+        data: r,
+      });
+    })
+    .catch((err) => {
+      res.status(err.response.status).json({
+        status: err.response.statusText,
+        data: err.response.outputError,
+      });
+    });
+});
 
 exports.updateOrderToPaid = catchAsyncError(async (req, res, next) => {
   const order = await Order.findById(req.params.id);

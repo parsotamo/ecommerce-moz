@@ -1,0 +1,33 @@
+.ad-listing-list {
+  transition: all linear 0.3s;
+  background-color: #fefefe;
+  &:hover {
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+  }
+}
+.product-ratings {
+  ul {
+    li {
+      i {
+        font-size: 14px;
+        color: #2e0209;
+      }
+    }
+  }
+}
+.category-cta {
+  text-decoration: none;
+  &:hover {
+    color: #d10024;
+  }
+}
+.title {
+  font-weight: bolder;
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: rgb(184, 96, 96);
+}
+.ads-list-group {
+  list-style: none;
+  padding: 0;
+}

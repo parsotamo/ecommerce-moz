@@ -1,3 +1,4 @@
+@import '../abstracts/variables';
 .u-center-text {
   text-align: center !important;
 }
@@ -39,7 +40,9 @@
 .u-padding-top-huge {
   padding-top: 10rem !important;
 }
-
+.fst-small {
+  font-size: 7px !important;
+}
 .jumbotron {
   background-color: $color-light-3;
   opacity: 0.2;
@@ -56,5 +59,19 @@
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+}
+
+.wrapper-photo {
+  text-align: center;
+  .product-user-photo {
+    border-radius: 50%;
+    border: 3px solid #ddd;
+  }
+  .product-user-name {
+    margin-top: 5px;
+    font-size: 11px;
+    color: #999;
+    font-style: italic;
   }
 }

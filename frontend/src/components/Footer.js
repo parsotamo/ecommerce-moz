@@ -1,71 +1,152 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="footer_area">
-      <div className="container">
-        <div className="row footer_inner">
-          <div className="col-sm-4 mb-5 mb-sm-0">
-            <aside className="f_widget ab_widget">
-              <div className="f_title">
-                <h3>Acerca de Mim</h3>
-              </div>
-              <p>
-                Eu sou Ilan Parsotamo, sou desenvolvedor de aplicativos webs.
-                Este projecto é apenas um demo de ecommerce.
-              </p>
-              <p>
-                Todos Direitos Reservados &copy; por Ilan Parsotamo{" "}
-                <i className="fas fa-heart text-danger" aria-hidden="true"></i>
-              </p>
-            </aside>
-          </div>
-          <div className="col-6 col-sm-5  mt-5 mt-sm-0 owner">
-            <div className="f_title">
-              <h3 className="">Desenvolvedor</h3>
-              <div className="owner-box-photo">
-                <img
-                  src="/images/users/Ilan_Parso.jpg"
-                  alt="Foto do Desenvolvedor"
-                  className="owner-photo"
-                />
+    <>
+      <footer className='footer text-center text-md-start'>
+        {/* <!-- Container Start --> */}
+        <div className='container'>
+          <div className='row'>
+            <div className='col-lg-3 col-md-7 offset-md-1 offset-lg-0'>
+              {/* <!-- About --> */}
+              <div className='block about'>
+                {/* <!-- footer logo --> */}
+                <h3 className='text-light'>Comércio Moz</h3>
+                {/* <!-- description --> */}
+                <p className='alt-color'>
+                  Encontre o que voçe precisa. Aqui voçê encontra produtos de
+                  alta qualidade a preço acessível. Garantimos a segurança da
+                  compra do seu produto.
+                </p>
               </div>
             </div>
-          </div>
-          <div className="col-6 col-sm-3 mt-5 mt-sm-0">
-            <div className="f_title">
-              <h3>Segue-me</h3>
+            {/* <!-- Link list --> */}
+            <div className='col-lg-2 offset-lg-1 col-md-3'>
+              <div className='block'>
+                <h4 className='block-title'>Informe-se</h4>
+                <ul className='block-list'>
+                  <li>
+                    <Link to='#'>Acerca de Nós</Link>
+                  </li>
+                  <li>
+                    <Link to='#'>Como funciona</Link>
+                  </li>
+                  <li>
+                    <Link to='#'>Políticas de Segurança</Link>
+                  </li>
+                  <li>
+                    <Link to='#'>Termos e Condições</Link>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <h3 className="text-light mb-5">Vamos ser sociais</h3>
-            <ul className="social-icons">
-              <li className="social-icons-item">
-                <span className="social-icons-link">
-                  <i
-                    onClick={() =>
-                      window.open(
-                        "https://instagram.com/ilan_parsotamo",
-                        "_blank"
-                      )
-                    }
-                    className="fab fa-instagram"
-                  ></i>
-                </span>
-              </li>
-              <li className="social-icons-item">
-                <span className="social-icons-link">
-                  <i
-                    onClick={() =>
-                      window.open("https://facebook.com/ilan.parso", "_blank")
-                    }
-                    className="fab fa-facebook"
-                  ></i>
-                </span>
-              </li>
-            </ul>
+            {/* <!-- Link list --> */}
+            <div className='col-lg-2 col-md-3 offset-md-1 offset-lg-0'>
+              <div className='block'>
+                <h4 className='block-title'>Serviços</h4>
+                <ul className='block-list'>
+                  <li>
+                    <Link to='#'>Promoções</Link>
+                  </li>
+                  <li>
+                    <Link to='#'>Atendimento</Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            {/* <!-- Promotion --> */}
+            <div className='col-lg-4 col-md-7'>
+              {/* <!-- App promotion --> */}
+              <div className='block-2 app-promotion'>
+                <div className='mobile d-flex'>
+                  <a href=''>
+                    {/* <!-- Icon --> */}
+                    <i className='fas fa-mobile fa-3x text-light'></i>
+                  </a>
+                  <p>Aplicativo móvel em fase de desenvolvimento</p>
+                </div>
+                {/* <div class='download-btn d-flex my-3'>
+                  <a href='#'>
+                    <img
+                      src='images/apps/google-play-store.png'
+                      class='img-fluid'
+                      alt=''
+                    />
+                  </a>
+                  <a href='#' class=' ml-3'>
+                    <img
+                      src='images/apps/apple-app-store.png'
+                      class='img-fluid'
+                      alt=''
+                    />
+                  </a>
+                </div> */}
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </footer>
+        {/* <!-- Container End --> */}
+      </footer>
+      {/* <!-- Footer Bottom --> */}
+      <footer className='footer-bottom'>
+        {/* <!-- Container Start --> */}
+        <div className='container'>
+          <div className='row'>
+            <div className='col-sm-6 col-12'>
+              {/* <!-- Copyright --> */}
+              <div className='copyright'>
+                <p>
+                  Copyright © {new Date().getFullYear()}. Todos direitos
+                  reservados por{' '}
+                  <span className='text-info'>comercio-moz.co.mz</span>
+                </p>
+              </div>
+            </div>
+            <div className='col-sm-6 col-12'>
+              {/* <!-- Social Icons --> */}
+              <ul className='social-media-icons text-right'>
+                <li>
+                  <i
+                    className='fab fa-lg fa-facebook'
+                    onClick={() =>
+                      window.open(
+                        'https://www.facebook.com/ilan.parso',
+                        '_blank'
+                      )
+                    }
+                  ></i>
+                </li>
+                <li>
+                  <i
+                    className='fab fa-lg fa-whatsapp'
+                    href='https://www.instagram.com/ilan_parsotamo'
+                    target='_blank'
+                  ></i>
+                </li>
+                <li>
+                  <i
+                    className='fab fa-lg fa-instagram'
+                    onClick={() =>
+                      window.open(
+                        'https://www.instagram.com/ilan_parsotamo',
+                        '_blank'
+                      )
+                    }
+                  ></i>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        {/* <!-- Container End --> */}
+        {/* <!-- To Top --> */}
+        <div className='top-to'>
+          <a id='top' className='' href='#header'>
+            <i className='fas fa-angle-up'></i>
+          </a>
+        </div>
+      </footer>
+    </>
   );
 };
 

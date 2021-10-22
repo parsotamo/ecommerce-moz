@@ -8,12 +8,13 @@
 }
 html {
   font-size: 62.5%;
-  @media only screen and (max-width: 575px) {
-    font-size: 45%;
+  @media only screen and (max-width: 1000px) {
+    font-size: 55%;
   }
 }
 body {
   box-sizing: border-box;
+  background-color: rgb(253, 253, 253);
 }
 
 // Fim Configuração Geral
