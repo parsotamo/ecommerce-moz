@@ -50,5 +50,8 @@
     "validator": "^13.6.0",
     "web-push": "^3.4.4",
     "xss-clean": "^0.1.1"
+  },
+  "devDependencies": {
+    "sass": "^1.43.3"
   }
 }
