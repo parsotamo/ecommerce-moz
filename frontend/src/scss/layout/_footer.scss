@@ -33,7 +33,7 @@
           color: #797979;
           text-decoration: none;
           &:hover {
-            color: $color-red-primary;
+            color: #d10024;
           }
         }
       }
@@ -65,7 +65,7 @@
       p {
         color: #ddd;
         a {
-          color: $color-red-primary;
+          color: #d10024;
         }
         margin-bottom: 0;
       }
@@ -117,7 +117,7 @@
   a {
     width: 40px;
     height: 40px;
-    background: $color-red-primary;
+    background: #d10024;
     color: #ddd;
     display: flex;
     justify-content: center;
