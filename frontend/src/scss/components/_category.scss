@@ -1,4 +1,3 @@
-@import '../abstracts/variables';
 .categories {
   background-color: transparent;
   margin-top: -24rem;
@@ -34,7 +33,7 @@
     text-decoration: none;
 
     &:hover .total {
-      background-color: $color-red-primary;
+      background-color: #d10024;
       color: #fff;
       border-color: transparent;
     }
@@ -86,7 +85,7 @@
     text-decoration: none;
     transition: all 0.2s;
     &:hover {
-      color: $color-red-primary !important;
+      color: #d10024 !important;
     }
   }
 }

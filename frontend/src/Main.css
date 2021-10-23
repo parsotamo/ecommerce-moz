@@ -400,33 +400,6 @@ body {
       .banner .banner-text {
         font-size: 1.2rem; } }
 
-/*font Variables*/
-/*Color Variables*/
-:root {
-  --color-green: #55c57a;
-  --color-green-light: #7ed56f;
-  --color-green-dark: #28b485;
-  --color-orange-light: #ffb900;
-  --color-orange-dark: #ff7730;
-  --color-blue-light: #2998ff;
-  --color-blue-dark: #5643fa;
-  --color-blue: #42a5f5;
-  --color-blue-test: #2b547e;
-  --color-blue-test-1: #104e8b;
-  --color-red-light: #bc544b;
-  --color-red-dark: #60100b;
-  --color-white: #fff;
-  --snow: #fffafa;
-  --ghost-white: #f8f8ff;
-  --belga: #f5f5dc;
-  --limon: #faf0e6;
-  --honeydew: #f0fff0;
-  --ivory: #fffff0;
-  --alice-blue: #f0f8ff;
-  --mint-cream: #f5fffa;
-  --old-lace: #fdf5e6;
-  --blue-light: #f7fbfb; }
-
 .glow-on-hover {
   border: none;
   outline: none;
@@ -644,33 +617,6 @@ table i {
     right: 0;
     cursor: pointer; }
 
-/*font Variables*/
-/*Color Variables*/
-:root {
-  --color-green: #55c57a;
-  --color-green-light: #7ed56f;
-  --color-green-dark: #28b485;
-  --color-orange-light: #ffb900;
-  --color-orange-dark: #ff7730;
-  --color-blue-light: #2998ff;
-  --color-blue-dark: #5643fa;
-  --color-blue: #42a5f5;
-  --color-blue-test: #2b547e;
-  --color-blue-test-1: #104e8b;
-  --color-red-light: #bc544b;
-  --color-red-dark: #60100b;
-  --color-white: #fff;
-  --snow: #fffafa;
-  --ghost-white: #f8f8ff;
-  --belga: #f5f5dc;
-  --limon: #faf0e6;
-  --honeydew: #f0fff0;
-  --ivory: #fffff0;
-  --alice-blue: #f0f8ff;
-  --mint-cream: #f5fffa;
-  --old-lace: #fdf5e6;
-  --blue-light: #f7fbfb; }
-
 .widget {
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.1);
   padding: 25px 30px 30px;
@@ -845,33 +791,6 @@ table i {
 .price-range-btn {
   cursor: pointer; }
 
-/*font Variables*/
-/*Color Variables*/
-:root {
-  --color-green: #55c57a;
-  --color-green-light: #7ed56f;
-  --color-green-dark: #28b485;
-  --color-orange-light: #ffb900;
-  --color-orange-dark: #ff7730;
-  --color-blue-light: #2998ff;
-  --color-blue-dark: #5643fa;
-  --color-blue: #42a5f5;
-  --color-blue-test: #2b547e;
-  --color-blue-test-1: #104e8b;
-  --color-red-light: #bc544b;
-  --color-red-dark: #60100b;
-  --color-white: #fff;
-  --snow: #fffafa;
-  --ghost-white: #f8f8ff;
-  --belga: #f5f5dc;
-  --limon: #faf0e6;
-  --honeydew: #f0fff0;
-  --ivory: #fffff0;
-  --alice-blue: #f0f8ff;
-  --mint-cream: #f5fffa;
-  --old-lace: #fdf5e6;
-  --blue-light: #f7fbfb; }
-
 .widget {
   background: #fff;
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
@@ -965,33 +884,6 @@ table i {
 
 .dashboard-container .action .delete {
   background: #f7f7f7; }
-
-/*font Variables*/
-/*Color Variables*/
-:root {
-  --color-green: #55c57a;
-  --color-green-light: #7ed56f;
-  --color-green-dark: #28b485;
-  --color-orange-light: #ffb900;
-  --color-orange-dark: #ff7730;
-  --color-blue-light: #2998ff;
-  --color-blue-dark: #5643fa;
-  --color-blue: #42a5f5;
-  --color-blue-test: #2b547e;
-  --color-blue-test-1: #104e8b;
-  --color-red-light: #bc544b;
-  --color-red-dark: #60100b;
-  --color-white: #fff;
-  --snow: #fffafa;
-  --ghost-white: #f8f8ff;
-  --belga: #f5f5dc;
-  --limon: #faf0e6;
-  --honeydew: #f0fff0;
-  --ivory: #fffff0;
-  --alice-blue: #f0f8ff;
-  --mint-cream: #f5fffa;
-  --old-lace: #fdf5e6;
-  --blue-light: #f7fbfb; }
 
 .recent-product .container {
   position: relative; }
@@ -1208,33 +1100,6 @@ header {
       header #navigation {
         top: 0;
         padding: 1rem; } }
-
-/*font Variables*/
-/*Color Variables*/
-:root {
-  --color-green: #55c57a;
-  --color-green-light: #7ed56f;
-  --color-green-dark: #28b485;
-  --color-orange-light: #ffb900;
-  --color-orange-dark: #ff7730;
-  --color-blue-light: #2998ff;
-  --color-blue-dark: #5643fa;
-  --color-blue: #42a5f5;
-  --color-blue-test: #2b547e;
-  --color-blue-test-1: #104e8b;
-  --color-red-light: #bc544b;
-  --color-red-dark: #60100b;
-  --color-white: #fff;
-  --snow: #fffafa;
-  --ghost-white: #f8f8ff;
-  --belga: #f5f5dc;
-  --limon: #faf0e6;
-  --honeydew: #f0fff0;
-  --ivory: #fffff0;
-  --alice-blue: #f0f8ff;
-  --mint-cream: #f5fffa;
-  --old-lace: #fdf5e6;
-  --blue-light: #f7fbfb; }
 
 .products-tab {
   justify-content: center;

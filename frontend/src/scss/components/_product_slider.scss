@@ -1,4 +1,3 @@
-@import '../abstracts/variables';
 .recent-product .container {
   position: relative;
 }
@@ -39,7 +38,7 @@
   height: auto !important;
   position: relative;
   &:hover {
-    border: 2px solid $color-red-primary;
+    border: 2px solid #d10024;
     border-bottom-width: 0;
   }
   &:hover::after {
@@ -69,7 +68,7 @@
   transition: all 0.2s;
 }
 .cta-link {
-  background-color: $color-red-primary;
+  background-color: #d10024;
   text-decoration: none;
   color: $color-light-1;
   text-transform: uppercase;
@@ -80,7 +79,7 @@
 }
 .cta-link-main {
   display: inline-block;
-  background-color: $color-red-primary;
+  background-color: #d10024;
   text-decoration: none;
   color: $color-light-1;
   text-transform: uppercase;
@@ -89,19 +88,19 @@
   font-size: 1.3rem;
   font-weight: 600;
   transition: all 0.4s;
-  border: 2px solid $color-red-primary;
+  border: 2px solid #d10024;
   position: relative;
   &:hover {
-    color: $color-red-primary;
+    color: #d10024;
     background-color: #fff;
-    border: 2px solid $color-red-primary;
+    border: 2px solid #d10024;
     padding-left: 5rem;
   }
   .cta-icon {
     position: absolute;
     top: 32%;
     left: 5%;
-    color: $color-red-primary;
+    color: #d10024;
     transition: all 0.4s;
   }
 }
@@ -128,7 +127,7 @@
     position: relative;
     text-decoration: none;
     padding-bottom: 2px;
-    color: $color-red-primary !important;
+    color: #d10024 !important;
     &::after {
       content: '';
       position: absolute;
@@ -136,7 +135,7 @@
       left: 0;
       width: 100%;
       height: 2px;
-      background-color: $color-red-primary;
+      background-color: #d10024;
       transform: scale(0);
       transition: all 0.4s;
     }

@@ -1,5 +1,3 @@
-@import '../abstracts/variables';
-
 .glow-on-hover {
   border: none;
   outline: none;
@@ -96,11 +94,7 @@
     width: 100%;
   }
   &--primary {
-    background: linear-gradient(
-      45deg,
-      $color-red-primary-dark,
-      $color-red-primary-light
-    );
+    background: linear-gradient(45deg, #ac1a1a, #ff0000);
   }
   &--secondary {
     background: linear-gradient(45deg, #d89d9d, #eb877c);
@@ -124,11 +118,7 @@
     opacity: 0;
   }
   &--primary::before {
-    background: linear-gradient(
-      45deg,
-      $color-red-primary-light,
-      $color-red-primary-dark
-    );
+    background: linear-gradient(45deg, #ff0000, #ac1a1a);
   }
   &--secondary::before {
     background: linear-gradient(45deg, #eb877c, #d89d9d);
