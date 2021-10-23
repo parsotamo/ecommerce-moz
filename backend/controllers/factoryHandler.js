@@ -35,7 +35,7 @@ exports.getAll = (Model) =>
     if (!req.body.skip) {
       const count = new APIFeatures(Model.find(filter), req.query).filter();
       const nrDocuments = await count.query;
-      pages = Math.ceil(Number(nrDocuments.length) / 2);
+      pages = Math.ceil(Number(nrDocuments.length) / 20);
       page = Number(req.query.page) || 1;
     }
 
