@@ -14,8 +14,6 @@ const UserListScreen = ({ history }) => {
   const [userName, setUserName] = useState('');
   const [userId, setUserId] = useState('');
 
-  const getPath = location.search.split('page=')[1];
-  const currentPage = getPath ? getPath.split('&')[0] : 1;
   const { userInfo } = useSelector((state) => state.userLogin);
   const { loading, users, error, page, pages } = useSelector(
     (state) => state.userList
@@ -26,11 +24,11 @@ const UserListScreen = ({ history }) => {
     if (!userInfo) {
       history.push('/login');
     } else if (userInfo && userInfo.role === 'admin') {
-      dispatch(getUsers(currentPage));
+      dispatch(getUsers(history.location.search));
     } else {
       history.push('/');
     }
-  }, [dispatch, history, userInfo, successDelete, currentPage]);
+  }, [dispatch, history, userInfo, successDelete, history.location.search]);
 
   const deleteUserHandler = (id) => {
     dispatch(deleteUser(id));

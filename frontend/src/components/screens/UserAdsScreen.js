@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Breadcrumb } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { fetchUserProducts, deleteProduct } from '../../actions';
@@ -11,7 +11,6 @@ import ModalRemove from '../ModalRemove';
 
 const UserAdsScreen = ({ history }) => {
   const dispatch = useDispatch();
-  const location = useLocation();
   const [modalIsOpen, setIsOpen] = useState(false);
   const [deletePrd, setDeleteProd] = useState('');
   const [productId, setProductId] = useState('');
@@ -20,17 +19,13 @@ const UserAdsScreen = ({ history }) => {
   );
   const { userInfo } = useSelector((state) => state.userLogin);
 
-  let currentPage = location.search.split('page=')[1];
-  if (currentPage) {
-    currentPage = currentPage.split('&')[0] || 1;
-  }
   useEffect(() => {
     if (!userInfo) {
       history.push('/');
     } else {
-      dispatch(fetchUserProducts(currentPage));
+      dispatch(fetchUserProducts(history.location.search));
     }
-  }, [dispatch, userInfo, currentPage]);
+  }, [dispatch, userInfo, history.location.search]);
 
   const deleteProductHandler = (id) => {
     dispatch(deleteProduct(id));
