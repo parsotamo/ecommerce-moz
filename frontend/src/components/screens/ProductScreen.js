@@ -419,6 +419,7 @@ const ProductDetail = ({ match }) => {
                               )}
                             </div>
                             <button
+                              disabled={showPhoneNumber ? true : false}
                               className='btn btn-outline-primary'
                               onClick={async () => {
                                 setShowPhoneNumber(true);
@@ -446,6 +447,7 @@ const ProductDetail = ({ match }) => {
                               )}
                             </div>
                             <button
+                              disabled={showWhatsAppNumber ? true : false}
                               className='btn btn-outline-success'
                               onClick={async () => {
                                 setShowWhatsAppNumber(true);
