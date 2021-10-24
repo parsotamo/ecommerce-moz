@@ -413,7 +413,7 @@ const ProductDetail = ({ match }) => {
                             <div className='d-flex align-items-center'>
                               <i className='fas fa-phone-square-alt fa-2x text-primary me-2'></i>{' '}
                               {showPhoneNumber ? (
-                                <span>{product.phoneNumber}</span>
+                                <span>{product.user.phoneNumber}</span>
                               ) : (
                                 <span>XX-XX-XX-XXX</span>
                               )}
@@ -431,7 +431,7 @@ const ProductDetail = ({ match }) => {
                             <div className='d-flex align-items-center'>
                               <i className='fab fa-whatsapp fa-2x text-success me-2'></i>
                               {showWhatsAppNumber ? (
-                                <span>{product.whatsApppNumber}</span>
+                                <span>{product.user.whatsApppNumber}</span>
                               ) : (
                                 <span>XX-XX-XX-XXX</span>
                               )}

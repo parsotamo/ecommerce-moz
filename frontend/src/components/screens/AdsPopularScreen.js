@@ -69,7 +69,7 @@ const AdsPopularScreen = ({ history }) => {
                                 <ul className='list-inline mt-2 mb-3'>
                                   <li className='list-inline-item'>
                                     <Link
-                                      to={`categoria/`}
+                                      to={`/ads/categoria/${product.category.name}/${product.category._id}`}
                                       className='category-cta'
                                     >
                                       {' '}

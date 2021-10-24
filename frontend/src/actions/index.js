@@ -362,42 +362,34 @@ export const logout = () => (dispatch) => {
   dispatch({ type: 'USER_LIST_RESET' });
 };
 
-export const register =
-  (name, email, password, passwordConfirm) => async (dispatch, getState) => {
-    try {
-      dispatch({ type: 'USER_REGISTER_REQUEST' });
-      const { data: response } = await axios.post(
-        '/api/users/signup',
-        {
-          name,
-          email,
-          password,
-          passwordConfirm,
-        },
-        { headers: { 'content-type': 'application/json' } }
-      );
-      dispatch({ type: 'USER_REGISTER_SUCCESS', payload: response.data });
-      dispatch({
-        type: 'USER_LOGIN_SUCCESS',
-        payload: {
-          _id: response.data._id,
-          name: response.data.name,
-          email: response.data.email,
-          photo: response.data.photo,
-          token: response.token,
-        },
-      });
-      localStorage.setItem(
-        'userInfo',
-        JSON.stringify(getState().userLogin.userInfo)
-      );
-    } catch (err) {
-      dispatch({
-        type: 'USER_REGISTER_FAIL',
-        payload: err.response.data.message,
-      });
-    }
-  };
+export const register = (data) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: 'USER_REGISTER_REQUEST' });
+    const { data: response } = await axios.post('/api/users/signup', data, {
+      headers: { 'content-type': 'application/json' },
+    });
+    dispatch({ type: 'USER_REGISTER_SUCCESS', payload: response.data });
+    dispatch({
+      type: 'USER_LOGIN_SUCCESS',
+      payload: {
+        _id: response.data._id,
+        name: response.data.name,
+        email: response.data.email,
+        photo: response.data.photo,
+        token: response.token,
+      },
+    });
+    localStorage.setItem(
+      'userInfo',
+      JSON.stringify(getState().userLogin.userInfo)
+    );
+  } catch (err) {
+    dispatch({
+      type: 'USER_REGISTER_FAIL',
+      payload: err.response.data.message,
+    });
+  }
+};
 
 export const getUserProfile = () => async (dispatch, getState) => {
   try {
@@ -417,7 +409,8 @@ export const getUserProfile = () => async (dispatch, getState) => {
 };
 
 export const userUpdateProfile =
-  (name, email, password) => async (dispatch, getState) => {
+  ({ name, email, phoneNumber, whatsAppNumber }) =>
+  async (dispatch, getState) => {
     try {
       dispatch({ type: 'USER_UPDATE_PROFILE_REQUEST' });
       const { data: response } = await axios.patch(
@@ -425,7 +418,8 @@ export const userUpdateProfile =
         {
           name,
           email,
-          password,
+          phoneNumber,
+          whatsAppNumber,
         },
         config(getState)
       );

@@ -22,14 +22,10 @@ const userSchema = new mongoose.Schema({
     default: 'https://compraja.s3.us-east-2.amazonaws.com/default/default.jpg',
   },
   phoneNumber: {
-    type: [String],
-    validate: [
-      (val) => {
-        val.length < 3;
-      },
-      'Já atingiu limite de contactos. Máximo 3',
-    ],
+    type: String,
+    required: [true, 'Contacto é campo obrigatório'],
   },
+  whatsAppNumber: String,
   role: {
     type: String,
     default: 'user',

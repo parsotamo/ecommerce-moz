@@ -34,7 +34,14 @@ exports.getMe = catchAsyncError(async (req, res, next) => {
 });
 
 exports.updateMe = catchAsyncError(async (req, res, next) => {
-  const filteredBody = filterObj(req.body, 'name', 'email', 'password');
+  const filteredBody = filterObj(
+    req.body,
+    'name',
+    'email',
+    'password',
+    'phoneNumber',
+    'whatsAppNumber'
+  );
   if (req.file) filteredBody.photo = req.body.photo;
   if (req.body.type === 'remove-photo') filteredBody.photo = req.body.photo;
   const user = await User.findByIdAndUpdate(req.user.id, filteredBody, {

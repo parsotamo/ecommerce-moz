@@ -25,8 +25,6 @@ const ProductCreateScreen = ({ history }) => {
   const [description, setDescription] = useState('');
   const [city, setCity] = useState('');
   const [address, setAddress] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [whatsAppNumber, setWhatsAppNumber] = useState('');
   const [hot, setHot] = useState(false);
   const [image, setImage] = useState('');
   const [images, setImages] = useState([]);
@@ -75,8 +73,6 @@ const ProductCreateScreen = ({ history }) => {
     formData.append('images', images);
     formData.append('address', address);
     formData.append('city', city);
-    formData.append('phoneNumber', phoneNumber);
-    formData.append('whatsAppNumber', whatsAppNumber);
     formData.append('negotiable', negotiable);
     formData.append('hot', hot);
     formData.append('state', state);
@@ -215,43 +211,7 @@ const ProductCreateScreen = ({ history }) => {
                       <option value='Nampula'>Nampula</option>
                     </select>
                   </div>
-                  <div className='form-group mb-3'>
-                    <Form.Label className='fs-5' htmlFor='address'>
-                      Contacto
-                    </Form.Label>
-                    <FormControl
-                      value={phoneNumber || ''}
-                      id='address'
-                      type='tel'
-                      minLength='9'
-                      maxLength='12'
-                      pattern='(82|84|85|86|87)[0-9]{7}'
-                      className='form-control py-3'
-                      placeholder='9 digitos máximo'
-                      onChange={(e) => {
-                        setPhoneNumber(e.target.value);
-                      }}
-                    />
-                  </div>
 
-                  <div className='form-group mb-3'>
-                    <Form.Label className='fs-5' htmlFor='whatsapp'>
-                      Contacto Whatsapp
-                    </Form.Label>
-                    <FormControl
-                      value={whatsAppNumber || ''}
-                      id='whatsapp'
-                      type='tel'
-                      minLength='9'
-                      maxLength='12'
-                      pattern='(82|84|85|86|87)[0-9]{7}'
-                      className='form-control py-3'
-                      placeholder='9 digitos máximo'
-                      onChange={(e) => {
-                        setWhatsAppNumber(e.target.value);
-                      }}
-                    />
-                  </div>
                   <div className='form-group mb-3'>
                     <Form.Label className='fs-5' htmlFor='description'>
                       Descrição

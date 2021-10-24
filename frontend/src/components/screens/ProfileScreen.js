@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { Form, FormControl } from 'react-bootstrap';
 import {
   getUserProfile,
   userUpdateProfile,
@@ -16,6 +17,8 @@ const ProfileScreen = ({ history }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [photo, setPhoto] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [whatsAppNumber, setWhatsAppNumber] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [message, setMessage] = useState('');
@@ -29,24 +32,32 @@ const ProfileScreen = ({ history }) => {
     loading: userOrderLoading,
     error: errorOrder,
   } = useSelector((state) => state.userOrders);
-  const { success } = useSelector((state) => state.userUpdateProfile);
+  const { loading: loadingUpdate, success } = useSelector(
+    (state) => state.userUpdateProfile
+  );
 
   useEffect(() => {
     if (!userInfo) {
       history.push('/login');
-    } else {
-      if (!user) {
-        dispatch({ type: 'USER_UPDATE_PROFILE_RESET' });
-        dispatch(getUserProfile());
-      } else if (userInfo._id !== user._id) {
-        dispatch(getUserProfile());
-      } else {
-        setName(user.name);
-        setEmail(user.email);
-        setPhoto(user.photo);
-      }
+    }
+    if (user) {
+      setName(user.name);
+      setEmail(user.email);
+      setPhoto(user.photo);
+      setPhoneNumber(user.phoneNumber);
+      setWhatsAppNumber(user.whatsAppNumber);
+    }
+    if (success) {
+      dispatch({ type: 'USER_DETAIL_RESET' });
+      dispatch(getUserProfile());
     }
   }, [user]);
+
+  useEffect(() => {
+    if (!orders) {
+      dispatch(getUserOrders());
+    }
+  }, [orders]);
 
   const uploadImageHandler = async (e) => {
     const file = e.target.files[0];
@@ -74,21 +85,18 @@ const ProfileScreen = ({ history }) => {
     }
   };
 
-  useEffect(() => {
-    if (!orders) {
-      dispatch(getUserOrders());
-    }
-  }, [orders]);
-
-  useEffect(() => {
-    if (success) {
-      dispatch(getUserProfile());
-    }
-  }, [success]);
-
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    dispatch(userUpdateProfile(name, email, password, passwordConfirm));
+    dispatch(
+      userUpdateProfile({
+        name,
+        email,
+        password,
+        passwordConfirm,
+        phoneNumber,
+        whatsAppNumber,
+      })
+    );
     dispatch({ type: 'USER_UPDATE_PROFILE_RESET' });
   };
 
@@ -213,6 +221,44 @@ const ProfileScreen = ({ history }) => {
             </div>
 
             <div className='form-group mb-3'>
+              <Form.Label className='fs-5' htmlFor='phoneNumber'>
+                Contacto
+              </Form.Label>
+              <FormControl
+                value={phoneNumber || ''}
+                id='phoneNumber'
+                type='tel'
+                minLength='9'
+                maxLength='12'
+                pattern='(82|84|85|86|87)[0-9]{7}'
+                className='form-control py-3'
+                placeholder='9 digitos máximo (Obrigatório)'
+                onChange={(e) => {
+                  setPhoneNumber(e.target.value);
+                }}
+              />
+            </div>
+
+            <div className='form-group mb-3'>
+              <Form.Label className='fs-5' htmlFor='whatsapp'>
+                Contacto Whatsapp
+              </Form.Label>
+              <FormControl
+                value={whatsAppNumber || ''}
+                id='whatsapp'
+                type='tel'
+                minLength='9'
+                maxLength='12'
+                pattern='(82|84|85|86|87)[0-9]{7}'
+                className='form-control py-3'
+                placeholder='9 digitos máximo (Opcional)'
+                onChange={(e) => {
+                  setWhatsAppNumber(e.target.value);
+                }}
+              />
+            </div>
+
+            <div className='form-group mb-3'>
               <label className='fs-5' htmlFor='pass'>
                 Senha
               </label>
@@ -239,8 +285,18 @@ const ProfileScreen = ({ history }) => {
             </div>
 
             <div className='d-grid'>
-              <button type='submit' className='btn btn-primary py-3'>
-                Actualizar
+              <button
+                disabled={loadingUpdate ? true : false}
+                type='submit'
+                className='btn btn-primary py-3'
+              >
+                {loadingUpdate ? (
+                  <span>
+                    Actualizando&nbsp;<i className='fas fa-sync fa-spin'></i>
+                  </span>
+                ) : (
+                  'Actualizar'
+                )}
               </button>
             </div>
           </form>

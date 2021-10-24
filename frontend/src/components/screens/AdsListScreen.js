@@ -68,7 +68,9 @@ const AdsListScreen = ({ history }) => {
                                 </div>
                                 <ul className='list-inline mt-2 mb-3'>
                                   <li className='list-inline-item'>
-                                    <Link to={`categoria/`}>
+                                    <Link
+                                      to={`/ads/categoria/${product.category.name}/${product.category._id}`}
+                                    >
                                       {' '}
                                       <i className='fa fa-folder-open-o'></i>{' '}
                                       {product.category.name}

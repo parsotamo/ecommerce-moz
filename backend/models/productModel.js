@@ -42,8 +42,7 @@ const productSchema = new mongoose.Schema(
     },
     description: {
       type: String,
-      minlength: [10, '4 caracteres no mínimo'],
-      maxlength: [1000, '200 caracteres no máximo'],
+      maxlength: [2000, '2000 caracteres no máximo'],
     },
     category: {
       type: mongoose.Schema.ObjectId,
@@ -79,8 +78,6 @@ const productSchema = new mongoose.Schema(
       enum: ['novo', 'usado'],
       required: [true, 'Estado é campo obrigatório'],
     },
-    phoneNumber: String,
-    whatsAppNumber: String,
     avgRating: {
       type: Number,
       min: [0, 'Não deve ser maior que 0'],
@@ -155,7 +152,7 @@ productSchema.pre(/^find/, function (next) {
     select: 'name',
   }).populate({
     path: 'user',
-    select: 'name photo',
+    select: 'name photo phoneNumber whatsAppNumber',
   });
   next();
 });
