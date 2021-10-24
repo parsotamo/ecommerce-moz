@@ -72,6 +72,10 @@ router
   );
 
 router.get('/:id/incrementViews', productController.incrementViews);
+router.get(
+  '/:id/incrementPhoneNumberViews',
+  productController.incrementPhoneNumberViews
+);
 
 router
   .route('/:id/upload')

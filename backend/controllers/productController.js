@@ -203,6 +203,18 @@ exports.incrementViews = catchAsyncError(async (req, res, next) => {
   });
 });
 
+exports.incrementPhoneNumberViews = catchAsyncError(async (req, res, next) => {
+  await Product.findByIdAndUpdate(
+    req.params.id,
+    { $inc: { phoneNumberViews: 1 } },
+    { new: true }
+  );
+
+  res.status(200).json({
+    status: 'success',
+  });
+});
+
 exports.getProducts = factory.getAll(Product);
 exports.getProduct = factory.getOne(Product);
 exports.createProduct = factory.createOne(Product);

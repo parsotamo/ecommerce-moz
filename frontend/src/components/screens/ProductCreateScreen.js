@@ -86,16 +86,17 @@ const ProductCreateScreen = ({ history }) => {
           {error && <Message variant='danger'>{error}</Message>}
           {!loading && (
             <form onSubmit={onSubmitHandler}>
-              <h1 className='text-uppercase my-5'>Criar Producto</h1>
+              <h1 className='text-uppercase my-5'>Publicar Anúncio</h1>
               <div className='row'>
                 <div className='col-lg-6'>
                   <div className='form-group mb-3'>
                     <label className='fs-5' htmlFor='name'>
-                      Nome
+                      Título
                     </label>
                     <input
                       id='name'
                       type='text'
+                      required
                       className='form-control py-3'
                       value={name}
                       onChange={(e) => setName(e.target.value)}
@@ -136,6 +137,7 @@ const ProductCreateScreen = ({ history }) => {
                     <input
                       id='brand'
                       type='text'
+                      required
                       className='form-control py-3'
                       value={brand}
                       onChange={(e) => setBrand(e.target.value)}
@@ -173,6 +175,7 @@ const ProductCreateScreen = ({ history }) => {
                     <input
                       id='countInStock'
                       type='text'
+                      required
                       className='form-control py-3'
                       value={countInStock}
                       onChange={(e) => setCountInStock(e.target.value)}
@@ -187,6 +190,7 @@ const ProductCreateScreen = ({ history }) => {
                       value={address || ''}
                       id='address'
                       type='text'
+                      required
                       className='form-control py-3'
                       onChange={(e) => {
                         setAddress(e.target.value);
@@ -201,6 +205,7 @@ const ProductCreateScreen = ({ history }) => {
                     <select
                       id='city'
                       className='form-select'
+                      required
                       onChange={(e) => {
                         setCity(e.target.value);
                       }}
@@ -288,6 +293,7 @@ const ProductCreateScreen = ({ history }) => {
                     </Form.Label>
                     <select
                       id='state'
+                      required
                       className='form-select'
                       onChange={(e) => {
                         setState(e.target.value);

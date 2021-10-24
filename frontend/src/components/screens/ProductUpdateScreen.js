@@ -219,12 +219,13 @@ const ProductUpdateScreen = ({ history, match }) => {
             <h1 className='text-capitalize mb-5'>Actualizar Anúncio</h1>
             <div className='form-group mb-3'>
               <Form.Label className='fs-5' htmlFor='name'>
-                Nome de Produto
+                Título
               </Form.Label>
               <FormControl
                 value={name || ''}
                 id='name'
                 type='text'
+                required
                 className='form-control py-3'
                 onChange={(e) => {
                   setName(e.target.value);
@@ -255,6 +256,7 @@ const ProductUpdateScreen = ({ history, match }) => {
                 value={brand || ''}
                 id='brand'
                 type='text'
+                required
                 className='form-control py-3'
                 onChange={(e) => {
                   setBrand(e.target.value);
@@ -270,6 +272,7 @@ const ProductUpdateScreen = ({ history, match }) => {
                 <select
                   id='category'
                   className='form-select'
+                  required
                   onChange={(e) => {
                     setCategory(e.target.value);
                   }}
@@ -291,6 +294,7 @@ const ProductUpdateScreen = ({ history, match }) => {
                 value={address || ''}
                 id='address'
                 type='text'
+                required
                 className='form-control py-3'
                 onChange={(e) => {
                   setAddress(e.target.value);
@@ -307,6 +311,7 @@ const ProductUpdateScreen = ({ history, match }) => {
                 value={city || ''}
                 id='city'
                 className='form-select'
+                required
                 onChange={(e) => {
                   setCity(e.target.value);
                 }}
@@ -376,6 +381,7 @@ const ProductUpdateScreen = ({ history, match }) => {
                 value={state || ''}
                 id='state'
                 className='form-select'
+                required
                 onChange={(e) => {
                   setState(e.target.value);
                 }}

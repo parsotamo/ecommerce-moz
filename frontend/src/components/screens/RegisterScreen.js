@@ -56,6 +56,7 @@ const RegisterScreen = ({ history, Location }) => {
             id='name'
             type='name'
             value={name}
+            required
             className='form-control py-3'
             onChange={(e) => setName(e.target.value)}
           />
@@ -68,6 +69,7 @@ const RegisterScreen = ({ history, Location }) => {
             id='email'
             type='email'
             value={email}
+            required
             className='form-control py-3'
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -82,6 +84,7 @@ const RegisterScreen = ({ history, Location }) => {
             type='tel'
             minLength='9'
             maxLength='12'
+            required
             pattern='(82|84|85|86|87)[0-9]{7}'
             className='form-control py-3'
             placeholder='9 digitos máximo (Obrigatório)'
@@ -117,6 +120,7 @@ const RegisterScreen = ({ history, Location }) => {
             id='pass'
             type='password'
             value={password}
+            required
             className='form-control py-3'
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -129,6 +133,7 @@ const RegisterScreen = ({ history, Location }) => {
             id='pass2'
             type='password'
             value={passwordConfirm}
+            required
             className='form-control py-3'
             onChange={(e) => setPasswordConfirm(e.target.value)}
           />

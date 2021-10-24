@@ -32,7 +32,6 @@ const productSchema = new mongoose.Schema(
       required: [true, 'Preencha campo preço'],
       min: [1, 'Preço deve ser maior que 0'],
       max: [9999999999, 'Não pode exceder 10 dígitos'],
-      required: ['Preço é campo obrigatório'],
     },
     brand: {
       type: String,
@@ -94,6 +93,10 @@ const productSchema = new mongoose.Schema(
     },
 
     views: {
+      type: Number,
+      default: 0,
+    },
+    phoneNumberViews: {
       type: Number,
       default: 0,
     },

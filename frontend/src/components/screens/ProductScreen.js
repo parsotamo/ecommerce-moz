@@ -420,7 +420,16 @@ const ProductDetail = ({ match }) => {
                             </div>
                             <button
                               className='btn btn-outline-primary'
-                              onClick={() => setShowPhoneNumber(true)}
+                              onClick={async () => {
+                                setShowPhoneNumber(true);
+                                try {
+                                  await axios.get(
+                                    `/api/products/${product._id}/incrementPhoneNumberViews`
+                                  );
+                                } catch (error) {
+                                  console.log(error);
+                                }
+                              }}
                             >
                               Mostrar
                             </button>
@@ -438,7 +447,16 @@ const ProductDetail = ({ match }) => {
                             </div>
                             <button
                               className='btn btn-outline-success'
-                              onClick={() => setShowWhatsAppNumber(true)}
+                              onClick={async () => {
+                                setShowWhatsAppNumber(true);
+                                try {
+                                  await axios.get(
+                                    `/api/products/${product._id}/incrementPhoneNumberViews`
+                                  );
+                                } catch (error) {
+                                  console.log(error);
+                                }
+                              }}
                             >
                               Mostrar
                             </button>
