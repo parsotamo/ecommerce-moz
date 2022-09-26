@@ -69,7 +69,7 @@ const Search = () => {
             onChange={(e) => setCategory(inputCategory.current.value)}
           >
             <option>Todas Categorias</option>
-            {subCategories
+            {subCategories && subCategories
               .map((subCategory) => subCategory.category)
               .reduce((acc, category) => {
                 const x = acc.find((item) => item._id === category._id);
